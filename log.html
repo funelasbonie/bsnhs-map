@@ -1,0 +1,204 @@
+  
+
+<!DOCTYPE html>
+<html lang="en">
+   <title>BSNHS digital map</title>
+     <link rel="icon" href="images/bsnhs.png" type="image/x-icon">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>log in</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+
+
+    
+
+    :root{
+    
+      background-image: linear-gradient(to top, rgb(25, 0, 165) 0%, rgb(113, 18, 196) 100%); 
+    }
+    *{box-sizing: border-box}
+    html,body{height:100%;}
+    body{
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      margin:0; display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(135deg,var(--purple-1),var(--purple-2));
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:32px;
+    }
+
+    .wait{
+      width:100%; max-width:420px;
+      background-color:#fff ;
+      border: 2px solid rgba(255,255,255,0.06);
+      border-radius:18px; padding:22px; box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      backdrop-filter: blur(6px);
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:12px; margin-bottom:18px;
+    }
+    .logo{
+      width:48px; height:48px; border-radius:10px; background: linear-gradient(135deg,var(--purple-2),var(--purple-3));
+      display:flex; align-items:center; justify-content:center; font-weight:700; color:#000000; box-shadow:0 6px 18px rgba(0,0,0,0.25);
+      border:3px solid rgba(0,0,0,0.08);
+    }
+    .brand h1{font-size:18px; margin:0}
+    .brand p{margin:0; opacity:0.9; font-size:12px}
+
+    /* tabs */
+    .tabs{display:flex; gap:8px; margin-bottom:18px}
+    .tab{
+      flex:1; text-align:center; padding:8px 10px; border-radius:12px; cursor:pointer;
+      background: transparent; border: 2px solid transparent; transition: all 180ms ease;
+      font-weight:600; font-size:14px;
+    }
+    .tab:hover{ transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.25) }
+    .tab.active{
+      background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 2px solid rgba(255,255,255,0.09);
+    }
+
+    form{display:none;}
+    form.active{display:block}
+
+    .field{margin-bottom:12px}
+    label{display:block; font-size:13px; margin-bottom:6px; opacity:0.95}
+    input{
+      width:100%; padding:12px 14px; border-radius:10px; border:1px solid black;
+      background: rgba(255,255,255,0.02); outline:none; font-size:14px;
+      transition: box-shadow 160ms ease, transform 160ms ease;
+    }
+    input:focus{ box-shadow: 0 8px 24px rgba(0,0,0,0.45); transform: translateY(-2px) }
+
+    .actions{display:flex; gap:10px; margin-top:10px}
+    .btn{
+      flex:1; padding:10px 12px; border-radius:10px; font-weight:700; cursor:pointer; 
+      background: rgba(255,255,255,0.06); transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+    .btn:hover{ transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.4) }
+
+    .btn.primary{
+      background-color: rgb(113, 18, 196); border: 1px solid rgb(113, 18, 196);
+      color: #fff;
+    }
+
+    .btn.primary a{
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .guest{
+      font-size:13px; text-align:center; margin-top:12px; opacity:0.95;
+    }
+    .guest a{ text-decoration:underline; font-weight:600}
+
+    /* small note */
+    .small{font-size:12px; opacity:0.95}
+
+    @media (max-width:420px){
+      .container{padding:16px}
+      .brand h1{font-size:16px}
+    }
+
+    
+    
+  </style>
+</head>
+<body>
+
+  
+    
+        
+
+  <div class="wait" role="region" aria-label="Login container">
+    <div class="brand">
+      <div class="logo">B</div>
+      <div>
+        <h1>BSNHS</h1>
+        <p class="small">Log In to here</p>
+      </div>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <div class="tab active" data-target="login" role="tab" tabindex="0">Log In</div>
+      <div class="tab" data-target="signup" role="tab" tabindex="0">Sign Up</div>
+      <div class="tab" data-target="guest" role="tab" tabindex="0">Use as Guest</div>
+    </div>
+
+    <!-- yung pag log in -->
+    <form id="login" class="active" autocomplete="on">
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="" required>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="" required>
+      </div>
+      <div class="actions">
+        <button type="submit" class="btn primary">Log In</button>
+        <button type="button" class="btn" onclick="alert('Forgot password flow — replace with real action')">Forgot</button>
+      </div>
+      <p class="guest">Or <a href="#" onclick="switchTo('guest');return false">continue as guest</a></p>
+    </form>
+
+    <!-- eto naman pag sign up -->
+    <form id="signup">
+      <div class="field">
+        <label for="name">Full name</label>
+        <input id="name" type="text" placeholder="" required>
+      </div>
+      <div class="field">
+        <label for="signup-email">Email</label>
+        <input id="signup-email" type="email" placeholder="" required>
+      </div>
+      <div class="field">
+        <label for="signup-password">Password</label>
+        <input id="signup-password" type="password" placeholder="Create a password" required>
+      </div>
+      <div class="actions">
+        <button type="submit" class="btn primary">Create Account</button>
+        <button type="button" class="btn" onclick="switchTo('login')">Back</button>
+      </div>
+    </form>
+
+    <!-- yung walang acc -->
+    <form id="guest">
+      <p class="small"></p>
+      <div style="height:10px"></div>
+      <div class="actions">
+        <button type="button" class="btn primary" ><a href="index.html"> Continue as Guest </a></button>
+        <button type="button" class="btn" onclick="switchTo('login')">Back</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+   
+    const tabs = document.querySelectorAll('.tab');
+    const forms = document.querySelectorAll('form');
+    tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.target)));
+    tabs.forEach(t => t.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key===' ') { e.preventDefault(); activate(t.dataset.target) } }));
+
+    function activate(name){
+     
+      tabs.forEach(t => t.classList.toggle('active', t.dataset.target === name));
+     
+      forms.forEach(f => f.classList.toggle('active', f.id === name));
+    }
+
+    function switchTo(name){ activate(name); }
+
+  
+    document.querySelectorAll('form').forEach(f=>{
+      f.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        alert('This is a demo. Replace with real auth logic.');
+      })
+    })
+  </script>
+</body>
+</html>

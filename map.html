@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>GPS Picker Map</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 10px;
+     background-image: linear-gradient(to top, rgb(25, 0, 165) 0%, rgb(113, 18, 196) 100%);
+  }
+
+  #mapContainer {
+    position: relative;
+    width: 90%;
+    max-width: 700px;
+    border: 2px solid #444;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+
+  #map {
+    width: 100%;
+    cursor: crosshair;
+  }
+
+  .marker {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: red;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #info {
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  #locBtn {
+    padding: 10px 20px;
+    background: #007bff;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<h2>GPS Picker Map</h2>
+<button id="locBtn">Get My Location</button>
+
+<div id="mapContainer">
+  <!-- Simple static map image -->
+  <img id="map" src="images/final.png" alt="map">
+  
+  <!-- markers -->
+  <div id="youMarker" class="marker" style="background: blue; display:none;"></div>
+  <div id="pickMarker" class="marker" style="background: red; display:none;"></div>
+</div>
+
+<div id="info">Click on the map to select a place.</div>
+
+<script>
+  const youMarker = document.getElementById("youMarker");
+  const pickMarker = document.getElementById("pickMarker");
+  const map = document.getElementById("map");
+  const info = document.getElementById("info");
+  const mapContainer = document.getElementById("mapContainer");
+
+  // FAKE MAP BOUNDS (example only)
+  // Replace these with your real map boundaries if needed
+  const mapBounds = {
+    topLat: 15.648156,
+    bottomLat: 15.645480,
+    leftLng: 120.759028,
+    rightLng: 120.761689
+  };
+
+  let userLat = null;
+  let userLng = null;
+
+  // Convert lat/lng → percent position on the image
+  function latLngToPercent(lat, lng) {
+    const x = ((lng - mapBounds.leftLng) / (mapBounds.rightLng - mapBounds.leftLng)) * 100;
+    const y = (1 - (lat - mapBounds.bottomLat) / (mapBounds.topLat - mapBounds.bottomLat)) * 100;
+    return { x, y };
+  }
+
+  // Convert click position → lat/lng
+  function percentToLatLng(xPercent, yPercent) {
+    const lng = mapBounds.leftLng + (xPercent / 100) * (mapBounds.rightLng - mapBounds.leftLng);
+    const lat = mapBounds.bottomLat + (1 - yPercent / 100) * (mapBounds.topLat - mapBounds.bottomLat);
+    return { lat, lng };
+  }
+
+  // Haversine distance
+  function distance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // km
+    const dLat = (lat2 - lat1) * Math.PI/180;
+    const dLon = (lon2 - lon1) * Math.PI/180;
+    const a = 
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) *
+      Math.sin(dLon/2) * Math.sin(dLon/2);
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  }
+
+  // Get user's real location
+  document.getElementById("locBtn").onclick = () => {
+    navigator.geolocation.getCurrentPosition(pos => {
+      userLat = pos.coords.latitude;
+      userLng = pos.coords.longitude;
+
+      const p = latLngToPercent(userLat, userLng);
+
+      youMarker.style.left = p.x + "%";
+      youMarker.style.top = p.y + "%";
+      youMarker.style.display = "block";
+
+      info.innerText = "Your location is shown (blue dot). Now click on the map to choose destination.";
+
+    }, err => {
+      alert("Location error. Allow GPS permissions.");
+    });
+  };
+
+  // Map click = choose destination
+  mapContainer.onclick = (e) => {
+    const rect = mapContainer.getBoundingClientRect();
+
+    let x = ((e.clientX - rect.left) / rect.width) * 100;
+    let y = ((e.clientY - rect.top) / rect.height) * 100;
+
+    // Place red marker
+    pickMarker.style.left = x + "%";
+    pickMarker.style.top = y + "%";
+    pickMarker.style.display = "block";
+
+    const target = percentToLatLng(x, y);
+
+    // If user location exists, compute distance
+    if (userLat != null) {
+      let d = distance(userLat, userLng, target.lat, target.lng).toFixed(2);
+      info.innerHTML = `
+        <div>You picked: Lat ${target.lat.toFixed(6)}, Lng ${target.lng.toFixed(6)}</div>
+        <div>Distance from you: <b>${d} km</b></div>
+      `;
+    } else {
+      info.innerHTML = `You picked: Lat ${target.lat.toFixed(6)}, Lng ${target.lng.toFixed(6)}<br>
+      (Click “Get My Location” first to measure distance.)`;
+    }
+  };
+</script>
+
+</body>
+</html>
