@@ -44,7 +44,77 @@ const LOCATIONS = [
     "lat": 15.660353190420091,
     "lng": 120.77210698235825,
     "category": "facility"
-  }
+  },
+  {
+    "name": "Math center",
+    "type": "facility",
+    "lat": 15.660370,
+    "lng":120.771712 ,
+    "category": "office"
+  },
+  {
+    "name": "9/10 STE room an deparment",
+    "type": "facility",
+    "lat": 15.660373,
+    "lng":120.771856,
+    "category": "office"
+  },
+   {
+    "name": "7-DADAY",
+    "type": "facility",
+    "lat": 15.659894,
+    "lng":120.771731,
+    "category": "classroom"
+  },
+  {
+    "name": "7-CHIENE",
+    "type": "facility",
+    "lat": 15.659894,
+    "lng":120.771793,
+    "category": "classroom"
+  },
+  {
+    "name": "7-SHIELA",
+    "type": "facility",
+    "lat": 15.659885,
+    "lng":120.771854,
+    "category": "classroom"
+  },
+   {
+    "name": "8-MARINEL",
+    "type": "facility",
+    "lat": 15.659882,
+    "lng":120.771922,
+    "category": "classroom"
+  },
+   {
+    "name": "clinic",
+    "type": "facility",
+    "lat": 15.659921,
+    "lng":120.771974,
+    "category": "office"
+  },
+  {
+    "name": "7-STE",
+    "type": "facility",
+    "lat": 15.660105,
+    "lng":  120.771959,
+    "category": "office"
+  },
+   {
+    "name": "7-VIOLY",
+    "type": "facility",
+    "lat": 15.660284, 
+    "lng":    120.771971,
+    "category": "office"
+  },
+  
+  
+
+   
+  
+ 
+
 ];
 
 // Calculate bounding box from corners
