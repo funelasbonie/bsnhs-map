@@ -23,6 +23,1564 @@ const REFERENCE_POINTS = {
 // Simple variable - change this to toggle between real GPS and test mode
 const USE_REAL_GPS = false; // Set to true for real GPS, false for test mode (gate)
 
+// ============================================================================
+// VISUAL PATHWAY TRACING SYSTEM
+// Click along black lines on the map to define pathways - NO GPS COORDINATES NEEDED!
+// ============================================================================
+
+// Traced pathways - stored as pixel coordinates, converted to GPS when needed
+// Format: { id, name, points: [{x, y}, ...] } where x,y are pixel coordinates
+const TRACED_PATHWAYS = [
+  {
+    "id": "pathway_1768698670006",
+    "name": "Gate to center",
+    "points": [
+      {
+        "x": 91.59999084472656,
+        "y": 434.39999771118164
+      },
+      {
+        "x": 98.59999084472656,
+        "y": 432.39999771118164
+      },
+      {
+        "x": 103.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 107.59999084472656,
+        "y": 434.39999771118164
+      },
+      {
+        "x": 115.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 120.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 123.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 127.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 127.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 130.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 133.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 137.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 139.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 147.59999084472656,
+        "y": 432.39999771118164
+      },
+      {
+        "x": 150.59999084472656,
+        "y": 431.39999771118164
+      },
+      {
+        "x": 155.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 159.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 162.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 166.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 170.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 175.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 179.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 184.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 187.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 191.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 193.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 197.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 201.59999084472656,
+        "y": 432.39999771118164
+      },
+      {
+        "x": 203.59999084472656,
+        "y": 432.39999771118164
+      },
+      {
+        "x": 211.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 215.59999084472656,
+        "y": 431.39999771118164
+      },
+      {
+        "x": 223.59999084472656,
+        "y": 432.39999771118164
+      },
+      {
+        "x": 227.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 231.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 236.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 239.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 243.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 246.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 250.59999084472656,
+        "y": 432.39999771118164
+      },
+      {
+        "x": 255.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 260.59999084472656,
+        "y": 432.39999771118164
+      },
+      {
+        "x": 265.59999084472656,
+        "y": 432.39999771118164
+      },
+      {
+        "x": 270.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 278.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 283.59999084472656,
+        "y": 434.39999771118164
+      },
+      {
+        "x": 288.59999084472656,
+        "y": 434.39999771118164
+      },
+      {
+        "x": 293.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 296.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 300.59999084472656,
+        "y": 432.39999771118164
+      },
+      {
+        "x": 306.59999084472656,
+        "y": 431.39999771118164
+      },
+      {
+        "x": 311.59999084472656,
+        "y": 434.39999771118164
+      },
+      {
+        "x": 321.59999084472656,
+        "y": 432.39999771118164
+      },
+      {
+        "x": 331.59999084472656,
+        "y": 432.39999771118164
+      },
+      {
+        "x": 337.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 342.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 347.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 355.59999084472656,
+        "y": 434.39999771118164
+      },
+      {
+        "x": 356.59999084472656,
+        "y": 434.39999771118164
+      },
+      {
+        "x": 364.59999084472656,
+        "y": 434.39999771118164
+      },
+      {
+        "x": 369.59999084472656,
+        "y": 434.39999771118164
+      },
+      {
+        "x": 375.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 383.59999084472656,
+        "y": 434.39999771118164
+      },
+      {
+        "x": 387.59999084472656,
+        "y": 434.39999771118164
+      },
+      {
+        "x": 391.59999084472656,
+        "y": 434.39999771118164
+      },
+      {
+        "x": 399.59999084472656,
+        "y": 434.39999771118164
+      },
+      {
+        "x": 406.59999084472656,
+        "y": 434.39999771118164
+      },
+      {
+        "x": 408.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 411.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 418.59999084472656,
+        "y": 433.39999771118164
+      },
+      {
+        "x": 421.59999084472656,
+        "y": 433.39999771118164
+      }
+    ]
+  },
+  {
+    "id": "pathway_1768698849755",
+    "name": "Way to guard house",
+    "points": [
+      {
+        "x": 126.59999084472656,
+        "y": 432.39999771118164
+      },
+      {
+        "x": 126.59999084472656,
+        "y": 434.39999771118164
+      },
+      {
+        "x": 126.59999084472656,
+        "y": 436.39999771118164
+      },
+      {
+        "x": 127.59999084472656,
+        "y": 440.39999771118164
+      },
+      {
+        "x": 127.59999084472656,
+        "y": 446.39999771118164
+      },
+      {
+        "x": 126.59999084472656,
+        "y": 450.39999771118164
+      },
+      {
+        "x": 126.59999084472656,
+        "y": 455.39999771118164
+      },
+      {
+        "x": 126.59999084472656,
+        "y": 462.39999771118164
+      },
+      {
+        "x": 127.59999084472656,
+        "y": 465.39999771118164
+      },
+      {
+        "x": 127.59999084472656,
+        "y": 470.39999771118164
+      },
+      {
+        "x": 127.59999084472656,
+        "y": 475.39999771118164
+      },
+      {
+        "x": 127.59999084472656,
+        "y": 480.39999771118164
+      },
+      {
+        "x": 128.59999084472656,
+        "y": 486.39999771118164
+      },
+      {
+        "x": 127.59999084472656,
+        "y": 490.39999771118164
+      },
+      {
+        "x": 128.59999084472656,
+        "y": 494.39999771118164
+      },
+      {
+        "x": 127.59999084472656,
+        "y": 496.39999771118164
+      }
+    ]
+  },
+  {
+    "id": "pathway_1768698938148",
+    "name": "Guard House Corridor",
+    "points": [
+      {
+        "x": 127.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 127.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 131.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 135.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 139.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 143.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 147.59999084472656,
+        "y": 496.39999771118164
+      },
+      {
+        "x": 151.59999084472656,
+        "y": 496.39999771118164
+      },
+      {
+        "x": 159.59999084472656,
+        "y": 496.39999771118164
+      },
+      {
+        "x": 163.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 169.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 172.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 174.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 178.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 183.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 188.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 192.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 196.59999084472656,
+        "y": 496.39999771118164
+      },
+      {
+        "x": 199.59999084472656,
+        "y": 496.39999771118164
+      },
+      {
+        "x": 207.59999084472656,
+        "y": 496.39999771118164
+      },
+      {
+        "x": 208.59999084472656,
+        "y": 496.39999771118164
+      },
+      {
+        "x": 213.59999084472656,
+        "y": 496.39999771118164
+      },
+      {
+        "x": 216.59999084472656,
+        "y": 496.39999771118164
+      },
+      {
+        "x": 218.59999084472656,
+        "y": 496.39999771118164
+      },
+      {
+        "x": 223.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 226.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 230.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 232.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 233.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 239.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 244.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 247.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 249.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 256.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 259.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 266.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 269.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 273.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 275.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 279.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 284.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 288.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 292.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 298.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 303.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 311.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 316.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 320.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 326.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 331.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 338.59999084472656,
+        "y": 495.39999771118164
+      },
+      {
+        "x": 342.59999084472656,
+        "y": 495.39999771118164
+      },
+      {
+        "x": 348.59999084472656,
+        "y": 497.39999771118164
+      },
+      {
+        "x": 355.59999084472656,
+        "y": 498.39999771118164
+      },
+      {
+        "x": 359.59999084472656,
+        "y": 498.39999771118164
+      }
+    ]
+  },
+  {
+    "id": "pathway_1768704943540",
+    "name": "Guard House Corridor Right",
+    "points": [
+      {
+        "x": 365.36363220214844,
+        "y": 497
+      },
+      {
+        "x": 365.36363220214844,
+        "y": 500
+      },
+      {
+        "x": 365.36363220214844,
+        "y": 505
+      },
+      {
+        "x": 366.36363220214844,
+        "y": 509
+      },
+      {
+        "x": 365.36363220214844,
+        "y": 513
+      },
+      {
+        "x": 365.36363220214844,
+        "y": 517
+      },
+      {
+        "x": 366.36363220214844,
+        "y": 522
+      }
+    ]
+  },
+  {
+    "id": "pathway_1768705090345",
+    "name": "Clinic Corridor",
+    "points": [
+      {
+        "x": 367.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 373.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 378.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 385.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 389.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 393.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 397.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 401.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 405.36363220214844,
+        "y": 522
+      },
+      {
+        "x": 409.36363220214844,
+        "y": 522
+      },
+      {
+        "x": 413.36363220214844,
+        "y": 522
+      },
+      {
+        "x": 418.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 424.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 429.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 433.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 437.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 442.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 448.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 452.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 457.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 461.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 469.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 475.36363220214844,
+        "y": 522
+      },
+      {
+        "x": 479.36363220214844,
+        "y": 522
+      },
+      {
+        "x": 483.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 488.36363220214844,
+        "y": 524
+      },
+      {
+        "x": 492.36363220214844,
+        "y": 524
+      },
+      {
+        "x": 498.36363220214844,
+        "y": 524
+      },
+      {
+        "x": 501.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 505.36363220214844,
+        "y": 522
+      },
+      {
+        "x": 509.36363220214844,
+        "y": 523
+      },
+      {
+        "x": 513.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 518.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 525.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 530.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 536.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 541.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 546.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 552.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 558.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 563.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 568.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 571.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 575.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 578.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 583.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 588.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 591.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 596.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 600.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 606.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 610.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 616.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 622.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 626.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 632.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 638.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 642.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 648.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 651.3636322021484,
+        "y": 525
+      },
+      {
+        "x": 658.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 667.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 672.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 679.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 681.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 686.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 690.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 695.3636322021484,
+        "y": 522
+      },
+      {
+        "x": 701.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 706.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 710.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 715.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 721.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 725.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 730.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 736.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 739.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 744.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 750.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 755.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 758.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 762.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 766.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 769.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 776.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 783.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 785.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 788.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 792.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 800.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 805.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 807.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 812.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 816.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 821.3636322021484,
+        "y": 523
+      },
+      {
+        "x": 826.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 831.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 836.3636322021484,
+        "y": 526
+      },
+      {
+        "x": 840.3636322021484,
+        "y": 525
+      },
+      {
+        "x": 843.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 848.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 855.3636322021484,
+        "y": 525
+      },
+      {
+        "x": 859.3636322021484,
+        "y": 526
+      },
+      {
+        "x": 864.3636322021484,
+        "y": 525
+      },
+      {
+        "x": 867.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 872.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 878.3636322021484,
+        "y": 525
+      },
+      {
+        "x": 882.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 886.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 888.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 890.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 893.3636322021484,
+        "y": 524
+      },
+      {
+        "x": 901.3636322021484,
+        "y": 525
+      },
+      {
+        "x": 904.3636322021484,
+        "y": 525
+      },
+      {
+        "x": 906.3636322021484,
+        "y": 524
+      }
+    ]
+  },
+  {
+    "id": "pathway_1768706077755",
+    "name": "Clinic Corridor To South",
+    "points": [
+      {
+        "x": 395.18182373046875,
+        "y": 522.6789741516113
+      },
+      {
+        "x": 395.18182373046875,
+        "y": 525.6789741516113
+      },
+      {
+        "x": 396.18182373046875,
+        "y": 527.6789741516113
+      },
+      {
+        "x": 395.18182373046875,
+        "y": 533.6789741516113
+      },
+      {
+        "x": 396.18182373046875,
+        "y": 538.6789741516113
+      },
+      {
+        "x": 396.18182373046875,
+        "y": 542.6789741516113
+      },
+      {
+        "x": 396.18182373046875,
+        "y": 549.6789741516113
+      },
+      {
+        "x": 395.18182373046875,
+        "y": 554.6789741516113
+      },
+      {
+        "x": 395.18182373046875,
+        "y": 558.6789741516113
+      },
+      {
+        "x": 395.18182373046875,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 395.18182373046875,
+        "y": 570.6789741516113
+      },
+      {
+        "x": 395.18182373046875,
+        "y": 576.6789741516113
+      },
+      {
+        "x": 395.18182373046875,
+        "y": 581.6789741516113
+      },
+      {
+        "x": 395.18182373046875,
+        "y": 589.6789741516113
+      },
+      {
+        "x": 395.18182373046875,
+        "y": 593.6789741516113
+      },
+      {
+        "x": 396.18182373046875,
+        "y": 597.6789741516113
+      },
+      {
+        "x": 395.18182373046875,
+        "y": 602.6789741516113
+      },
+      {
+        "x": 394.18182373046875,
+        "y": 605.6789741516113
+      }
+    ]
+  },
+  {
+    "id": "pathway_1768706386627",
+    "name": "Audrey Corridoer",
+    "points": [
+      {
+        "x": 395.18182373046875,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 398.18182373046875,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 403.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 407.18182373046875,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 410.18182373046875,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 416.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 419.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 425.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 431.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 434.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 437.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 443.18182373046875,
+        "y": 564.6789741516113
+      },
+      {
+        "x": 447.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 452.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 454.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 458.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 463.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 465.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 473.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 477.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 479.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 483.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 488.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 491.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 493.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 499.18182373046875,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 503.18182373046875,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 509.18182373046875,
+        "y": 561.6789741516113
+      },
+      {
+        "x": 513.1818237304688,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 516.1818237304688,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 519.1818237304688,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 524.1818237304688,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 526.1818237304688,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 533.1818237304688,
+        "y": 561.6789741516113
+      },
+      {
+        "x": 541.1818237304688,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 543.1818237304688,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 546.1818237304688,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 552.1818237304688,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 553.1818237304688,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 557.1818237304688,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 562.1818237304688,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 566.1818237304688,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 568.1818237304688,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 574.1818237304688,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 576.1818237304688,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 580.1818237304688,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 583.1818237304688,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 587.1818237304688,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 589.1818237304688,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 594.1818237304688,
+        "y": 561.6789741516113
+      },
+      {
+        "x": 599.1818237304688,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 601.1818237304688,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 605.1818237304688,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 608.1818237304688,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 613.1818237304688,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 614.1818237304688,
+        "y": 562.6789741516113
+      },
+      {
+        "x": 620.1818237304688,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 621.1818237304688,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 623.1818237304688,
+        "y": 563.6789741516113
+      },
+      {
+        "x": 627.1818237304688,
+        "y": 563.6789741516113
+      }
+    ]
+  }
+];
+
+let isTracingPathway = false;
+let currentPathway = null;
+let pathwayPoints = [];
+let tracingPreview = null;
+
+// ============================================================================
+// VISUAL PATHWAY TRACING FUNCTIONS
+// ============================================================================
+
+// Start tracing a new pathway - call this in browser console
+// Example: startPathwayTracing('Gate to Main Hall')
+window.startPathwayTracing = function(name) {
+  if (isTracingPathway) {
+    console.warn('Already tracing a pathway. Finish current one first.');
+    return;
+  }
+  
+  isTracingPathway = true;
+  currentPathway = { id: `pathway_${Date.now()}`, name: name || 'Unnamed Pathway' };
+  pathwayPoints = [];
+  
+  console.log(`🎯 Tracing "${currentPathway.name}"`);
+  console.log('Click along the black lines on the map to trace the pathway.');
+  console.log('Press ESC or call finishPathwayTracing() when done.');
+  
+  // Create preview element
+  if (mapContainer) {
+    tracingPreview = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    tracingPreview.style.position = 'absolute';
+    tracingPreview.style.top = '0';
+    tracingPreview.style.left = '0';
+    tracingPreview.style.width = '100%';
+    tracingPreview.style.height = '100%';
+    tracingPreview.style.pointerEvents = 'none';
+    tracingPreview.style.zIndex = '20';
+    tracingPreview.setAttribute('class', 'pathway-tracing-preview');
+    mapContainer.appendChild(tracingPreview);
+  }
+  
+  // Update info
+  if (info) {
+    info.innerHTML = `
+      <div class="info-hint" style="color: #4285f4; font-weight: bold;">
+        🎯 Tracing: "${currentPathway.name}"
+      </div>
+      <div class="info-hint">Click along the black lines to trace the pathway.</div>
+      <div class="info-hint">Press ESC or call finishPathwayTracing() when done.</div>
+    `;
+  }
+  
+  // Add ESC key listener
+  document.addEventListener('keydown', handleTracingKeyPress);
+};
+
+// Finish tracing and save pathway
+window.finishPathwayTracing = function() {
+  if (!isTracingPathway) {
+    console.warn('Not currently tracing a pathway.');
+    return;
+  }
+  
+  if (pathwayPoints.length < 2) {
+    console.warn('Need at least 2 points to create a pathway.');
+    return;
+  }
+  
+  // Save pathway
+  currentPathway.points = [...pathwayPoints];
+  TRACED_PATHWAYS.push(currentPathway);
+  
+  console.log(`✅ Pathway "${currentPathway.name}" saved with ${pathwayPoints.length} points!`);
+  console.log('Pathway data:', currentPathway);
+  console.log('\n=== COPY THIS TO TRACED_PATHWAYS ARRAY ===');
+  console.log(JSON.stringify(currentPathway, null, 2));
+  console.log('===========================================\n');
+  
+  // Clean up
+  isTracingPathway = false;
+  currentPathway = null;
+  pathwayPoints = [];
+  
+  if (tracingPreview) {
+    tracingPreview.remove();
+    tracingPreview = null;
+  }
+  
+  document.removeEventListener('keydown', handleTracingKeyPress);
+  
+  if (info) {
+    info.innerHTML = '<div class="info-hint">Pathway saved! Click on map to select destination.</div>';
+  }
+};
+
+// Handle ESC key to finish tracing
+function handleTracingKeyPress(e) {
+  if (e.key === 'Escape' && isTracingPathway) {
+    finishPathwayTracing();
+  }
+}
+
+// Draw preview of traced pathway
+function drawTracingPreview() {
+  if (!tracingPreview || pathwayPoints.length < 2) return;
+  
+  // Clear previous
+  tracingPreview.innerHTML = '';
+  
+  // Create path
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  let pathData = '';
+  
+  for (let i = 0; i < pathwayPoints.length; i++) {
+    const point = pathwayPoints[i];
+    if (i === 0) {
+      pathData += `M ${point.x} ${point.y}`;
+    } else {
+      pathData += ` L ${point.x} ${point.y}`;
+    }
+  }
+  
+  path.setAttribute('d', pathData);
+  path.setAttribute('stroke', '#ff0000');
+  path.setAttribute('stroke-width', '4');
+  path.setAttribute('fill', 'none');
+  path.setAttribute('stroke-linecap', 'round');
+  path.setAttribute('stroke-linejoin', 'round');
+  path.setAttribute('opacity', '0.8');
+  
+  tracingPreview.appendChild(path);
+  
+  // Draw points
+  pathwayPoints.forEach((point, i) => {
+    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute('cx', point.x);
+    circle.setAttribute('cy', point.y);
+    circle.setAttribute('r', i === 0 || i === pathwayPoints.length - 1 ? '5' : '3');
+    circle.setAttribute('fill', '#ff0000');
+    circle.setAttribute('opacity', '0.9');
+    tracingPreview.appendChild(circle);
+  });
+}
+
 // Location Database
 // See LOCATIONS_GUIDE.md for documentation on adding locations
 // Dito ka magaaddd ng locations
@@ -821,7 +2379,7 @@ function updateUserMarker(lat, lng, accuracy = null) {
   }
 }
 
-// Handle map click to set destination
+// Handle map click to set destination OR trace pathways
 function handleMapClick(e) {
   if (!mapContainer) return;
 
@@ -829,7 +2387,14 @@ function handleMapClick(e) {
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
 
-  // Place destination marker
+  // If tracing pathway, add point to current pathway
+  if (isTracingPathway && currentPathway) {
+    pathwayPoints.push({ x, y });
+    drawTracingPreview();
+    return;
+  }
+
+  // Normal click - place destination marker
   if (pickMarker) {
     pickMarker.style.left = x + 'px';
     pickMarker.style.top = y + 'px';
@@ -1237,6 +2802,449 @@ function showLocationInfo(name, lat, lng, distance = null) {
   `;
 }
 
+// Find nearest point on any traced pathway
+function findNearestPointOnPathways(pixelX, pixelY) {
+  let nearest = null;
+  let minDistance = Infinity;
+  let nearestPathwayId = null;
+  let nearestPointIndex = -1;
+  
+  for (const pathway of TRACED_PATHWAYS) {
+    for (let i = 0; i < pathway.points.length; i++) {
+      const point = pathway.points[i];
+      const dist = Math.sqrt(
+        Math.pow(point.x - pixelX, 2) + Math.pow(point.y - pixelY, 2)
+      );
+      
+      if (dist < minDistance) {
+        minDistance = dist;
+        nearest = point;
+        nearestPathwayId = pathway.id;
+        nearestPointIndex = i;
+      }
+    }
+  }
+  
+  return nearest ? { 
+    point: nearest, 
+    pathwayId: nearestPathwayId, 
+    pointIndex: nearestPointIndex, 
+    distance: minDistance 
+  } : null;
+}
+
+// Find connection point between two pathways (returns the point indices)
+function findPathwayConnection(pathway1, pathway2, tolerance = 10) {
+  let bestConnection = null;
+  let minDistance = Infinity;
+  
+  for (let i = 0; i < pathway1.points.length; i++) {
+    const p1 = pathway1.points[i];
+    for (let j = 0; j < pathway2.points.length; j++) {
+      const p2 = pathway2.points[j];
+      const dist = Math.sqrt(
+        Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2)
+      );
+      if (dist < tolerance && dist < minDistance) {
+        minDistance = dist;
+        bestConnection = { pathway1Index: i, pathway2Index: j, point: p1, distance: dist };
+      }
+    }
+  }
+  return bestConnection;
+}
+
+// Check if two pathways connect (share a point within tolerance)
+function pathwaysConnect(pathway1, pathway2, tolerance = 10) {
+  return findPathwayConnection(pathway1, pathway2, tolerance) !== null;
+}
+
+// Build graph from traced pathways with connection info
+function buildTracedPathwayGraph() {
+  const graph = {};
+  
+  // Initialize nodes (each pathway is a node)
+  for (const pathway of TRACED_PATHWAYS) {
+    graph[pathway.id] = {
+      pathway: pathway,
+      neighbors: []
+    };
+  }
+  
+  // Connect pathways that share points and store connection info
+  for (let i = 0; i < TRACED_PATHWAYS.length; i++) {
+    for (let j = i + 1; j < TRACED_PATHWAYS.length; j++) {
+      const connection = findPathwayConnection(TRACED_PATHWAYS[i], TRACED_PATHWAYS[j]);
+      if (connection) {
+        graph[TRACED_PATHWAYS[i].id].neighbors.push({
+          pathwayId: TRACED_PATHWAYS[j].id,
+          pathway: TRACED_PATHWAYS[j],
+          connectionIndex: connection.pathway1Index, // Index on pathway1 where they connect
+          neighborConnectionIndex: connection.pathway2Index // Index on pathway2 where they connect
+        });
+        graph[TRACED_PATHWAYS[j].id].neighbors.push({
+          pathwayId: TRACED_PATHWAYS[i].id,
+          pathway: TRACED_PATHWAYS[i],
+          connectionIndex: connection.pathway2Index, // Index on pathway2 where they connect
+          neighborConnectionIndex: connection.pathway1Index // Index on pathway1 where they connect
+        });
+      }
+    }
+  }
+  
+  return graph;
+}
+
+// Find route through traced pathways using pathfinding
+function findRouteThroughTracedPathways(startLat, startLng, endLat, endLng) {
+  if (TRACED_PATHWAYS.length === 0) {
+    console.log('No traced pathways available');
+    return null;
+  }
+  
+  const startPixel = gpsToPixel(startLat, startLng);
+  const endPixel = gpsToPixel(endLat, endLng);
+  
+  let startNearest = findNearestPointOnPathways(startPixel.x, startPixel.y);
+  let endNearest = findNearestPointOnPathways(endPixel.x, endPixel.y);
+  
+  console.log('Start nearest:', startNearest);
+  console.log('End nearest:', endNearest);
+  
+  if (!startNearest || !endNearest) {
+    console.warn('Could not find nearest pathways. Start distance:', startNearest?.distance, 'End distance:', endNearest?.distance);
+    // Try with larger search radius - find nearest pathway even if point is far
+    if (!startNearest) {
+      let minDist = Infinity;
+      let nearestPathway = null;
+      let nearestIdx = -1;
+      for (const pathway of TRACED_PATHWAYS) {
+        for (let i = 0; i < pathway.points.length; i++) {
+          const point = pathway.points[i];
+          const dist = Math.sqrt(
+            Math.pow(point.x - startPixel.x, 2) + Math.pow(point.y - startPixel.y, 2)
+          );
+          if (dist < minDist) {
+            minDist = dist;
+            nearestPathway = pathway;
+            nearestIdx = i;
+          }
+        }
+      }
+      if (nearestPathway) {
+        console.log('Using fallback start pathway:', nearestPathway.id, 'distance:', minDist);
+        startNearest = { point: nearestPathway.points[nearestIdx], pathwayId: nearestPathway.id, pointIndex: nearestIdx, distance: minDist };
+      }
+    }
+    
+    if (!endNearest) {
+      let minDist = Infinity;
+      let nearestPathway = null;
+      let nearestIdx = -1;
+      for (const pathway of TRACED_PATHWAYS) {
+        for (let i = 0; i < pathway.points.length; i++) {
+          const point = pathway.points[i];
+          const dist = Math.sqrt(
+            Math.pow(point.x - endPixel.x, 2) + Math.pow(point.y - endPixel.y, 2)
+          );
+          if (dist < minDist) {
+            minDist = dist;
+            nearestPathway = pathway;
+            nearestIdx = i;
+          }
+        }
+      }
+      if (nearestPathway) {
+        console.log('Using fallback end pathway:', nearestPathway.id, 'distance:', minDist);
+        endNearest = { point: nearestPathway.points[nearestIdx], pathwayId: nearestPathway.id, pointIndex: nearestIdx, distance: minDist };
+      }
+    }
+    
+    if (!startNearest || !endNearest) {
+      console.error('Still could not find pathways');
+      return null;
+    }
+  }
+  
+  const startPathwayId = startNearest.pathwayId;
+  const endPathwayId = endNearest.pathwayId;
+  
+  // If same pathway, use it directly
+  if (startPathwayId === endPathwayId) {
+    const pathway = TRACED_PATHWAYS.find(p => p.id === startPathwayId);
+    const startIdx = startNearest.pointIndex;
+    const endIdx = endNearest.pointIndex;
+    
+    const path = [{ lat: startLat, lng: startLng }];
+    
+    const minIdx = Math.min(startIdx, endIdx);
+    const maxIdx = Math.max(startIdx, endIdx);
+    
+    for (let i = minIdx; i <= maxIdx; i++) {
+      const point = pathway.points[i];
+      const gps = pixelToGps(point.x, point.y);
+      path.push(gps);
+    }
+    
+    path.push({ lat: endLat, lng: endLng });
+    console.log('Same pathway route:', path.length, 'points');
+    return path;
+  }
+  
+  // Different pathways - use pathfinding
+  const graph = buildTracedPathwayGraph();
+  console.log('Pathway graph:', Object.keys(graph).length, 'pathways');
+  console.log('Start pathway neighbors:', graph[startPathwayId]?.neighbors.length);
+  console.log('End pathway neighbors:', graph[endPathwayId]?.neighbors.length);
+  
+  // A* pathfinding through pathway graph
+  const openSet = [{ pathwayId: startPathwayId, g: 0, f: 0 }];
+  const closedSet = new Set();
+  const cameFrom = {};
+  const gScore = { [startPathwayId]: 0 };
+  
+  // Heuristic: distance between pathway centers
+  const startPathway = TRACED_PATHWAYS.find(p => p.id === startPathwayId);
+  const endPathway = TRACED_PATHWAYS.find(p => p.id === endPathwayId);
+  const startCenter = {
+    x: startPathway.points[Math.floor(startPathway.points.length / 2)].x,
+    y: startPathway.points[Math.floor(startPathway.points.length / 2)].y
+  };
+  const endCenter = {
+    x: endPathway.points[Math.floor(endPathway.points.length / 2)].x,
+    y: endPathway.points[Math.floor(endPathway.points.length / 2)].y
+  };
+  const hStart = Math.sqrt(
+    Math.pow(startCenter.x - endCenter.x, 2) + Math.pow(startCenter.y - endCenter.y, 2)
+  );
+  const fScore = { [startPathwayId]: hStart };
+  
+  while (openSet.length > 0) {
+    openSet.sort((a, b) => {
+      const fA = fScore[a.pathwayId] || Infinity;
+      const fB = fScore[b.pathwayId] || Infinity;
+      return fA - fB;
+    });
+    
+    const current = openSet.shift();
+    
+    if (current.pathwayId === endPathwayId) {
+      // Reconstruct path
+      const pathwaySequence = [];
+      let currentNodeId = endPathwayId;
+      
+      while (currentNodeId !== startPathwayId) {
+        const pathway = TRACED_PATHWAYS.find(p => p.id === currentNodeId);
+        pathwaySequence.unshift(pathway);
+        const prevId = cameFrom[currentNodeId];
+        if (!prevId) break;
+        currentNodeId = prevId;
+      }
+      
+      // Add start pathway
+      const startPath = TRACED_PATHWAYS.find(p => p.id === startPathwayId);
+      pathwaySequence.unshift(startPath);
+      
+      // Build route points following pathways properly
+      const path = [{ lat: startLat, lng: startLng }];
+      
+      // Find connection points between pathways
+      const connections = [];
+      for (let i = 0; i < pathwaySequence.length - 1; i++) {
+        const conn = findPathwayConnection(pathwaySequence[i], pathwaySequence[i + 1]);
+        if (conn) {
+          connections.push({
+            pathway1Index: conn.pathway1Index,
+            pathway2Index: conn.pathway2Index
+          });
+        }
+      }
+      
+      // Add points from start pathway (from nearest point to connection point)
+      const startPathway = pathwaySequence[0];
+      const startIdx = startNearest.pointIndex;
+      
+      let targetIdx;
+      if (pathwaySequence.length > 1 && connections.length > 0) {
+        // Go to connection point with next pathway
+        targetIdx = connections[0].pathway1Index;
+      } else {
+        // Same pathway or no connections, go to end point
+        targetIdx = endNearest.pointIndex;
+      }
+      
+      // Traverse start pathway in correct direction
+      if (startIdx <= targetIdx) {
+        for (let i = startIdx; i <= targetIdx; i++) {
+          const point = startPathway.points[i];
+          const gps = pixelToGps(point.x, point.y);
+          path.push(gps);
+        }
+      } else {
+        for (let i = startIdx; i >= targetIdx; i--) {
+          const point = startPathway.points[i];
+          const gps = pixelToGps(point.x, point.y);
+          path.push(gps);
+        }
+      }
+      
+      // Add points from intermediate pathways (from connection to connection)
+      for (let p = 1; p < pathwaySequence.length - 1; p++) {
+        const pathway = pathwaySequence[p];
+        const fromIdx = connections[p - 1].pathway2Index; // Connection from previous pathway
+        const toIdx = connections[p].pathway1Index; // Connection to next pathway
+        
+        // Traverse in correct direction
+        if (fromIdx <= toIdx) {
+          for (let i = fromIdx; i <= toIdx; i++) {
+            const point = pathway.points[i];
+            const gps = pixelToGps(point.x, point.y);
+            // Avoid duplicates (check last point)
+            const lastPoint = path[path.length - 1];
+            const dist = Math.sqrt(
+              Math.pow(point.x - (gpsToPixel(lastPoint.lat, lastPoint.lng).x), 2) +
+              Math.pow(point.y - (gpsToPixel(lastPoint.lat, lastPoint.lng).y), 2)
+            );
+            if (dist > 2) { // Only add if not too close to last point
+              path.push(gps);
+            }
+          }
+        } else {
+          for (let i = fromIdx; i >= toIdx; i--) {
+            const point = pathway.points[i];
+            const gps = pixelToGps(point.x, point.y);
+            const lastPoint = path[path.length - 1];
+            const dist = Math.sqrt(
+              Math.pow(point.x - (gpsToPixel(lastPoint.lat, lastPoint.lng).x), 2) +
+              Math.pow(point.y - (gpsToPixel(lastPoint.lat, lastPoint.lng).y), 2)
+            );
+            if (dist > 2) {
+              path.push(gps);
+            }
+          }
+        }
+      }
+      
+      // Add points from end pathway (from connection point to nearest point)
+      if (pathwaySequence.length > 1) {
+        const endPathway = pathwaySequence[pathwaySequence.length - 1];
+        const endIdx = endNearest.pointIndex;
+        
+        let fromIdx;
+        if (connections.length > 0) {
+          // Start from connection with previous pathway
+          fromIdx = connections[connections.length - 1].pathway2Index;
+        } else {
+          // No connections, start from beginning
+          fromIdx = 0;
+        }
+        
+        // Traverse in correct direction
+        if (fromIdx <= endIdx) {
+          for (let i = fromIdx; i <= endIdx; i++) {
+            const point = endPathway.points[i];
+            const gps = pixelToGps(point.x, point.y);
+            const lastPoint = path[path.length - 1];
+            const dist = Math.sqrt(
+              Math.pow(point.x - (gpsToPixel(lastPoint.lat, lastPoint.lng).x), 2) +
+              Math.pow(point.y - (gpsToPixel(lastPoint.lat, lastPoint.lng).y), 2)
+            );
+            if (dist > 2) {
+              path.push(gps);
+            }
+          }
+        } else {
+          for (let i = fromIdx; i >= endIdx; i--) {
+            const point = endPathway.points[i];
+            const gps = pixelToGps(point.x, point.y);
+            const lastPoint = path[path.length - 1];
+            const dist = Math.sqrt(
+              Math.pow(point.x - (gpsToPixel(lastPoint.lat, lastPoint.lng).x), 2) +
+              Math.pow(point.y - (gpsToPixel(lastPoint.lat, lastPoint.lng).y), 2)
+            );
+            if (dist > 2) {
+              path.push(gps);
+            }
+          }
+        }
+      }
+      
+      path.push({ lat: endLat, lng: endLng });
+      
+      console.log('Multi-pathway route found:', pathwaySequence.length, 'pathways,', path.length, 'points');
+      return path;
+    }
+    
+    closedSet.add(current.pathwayId);
+    
+    // Check neighbors
+    const currentNode = graph[current.pathwayId];
+    for (const neighbor of currentNode.neighbors) {
+      if (closedSet.has(neighbor.pathwayId)) continue;
+      
+      const tentativeG = gScore[current.pathwayId] + 1; // Each pathway = 1 step
+      
+      if (!gScore[neighbor.pathwayId] || tentativeG < gScore[neighbor.pathwayId]) {
+        cameFrom[neighbor.pathwayId] = current.pathwayId;
+        gScore[neighbor.pathwayId] = tentativeG;
+        
+        const neighborPathway = neighbor.pathway;
+        const neighborCenter = {
+          x: neighborPathway.points[Math.floor(neighborPathway.points.length / 2)].x,
+          y: neighborPathway.points[Math.floor(neighborPathway.points.length / 2)].y
+        };
+        const h = Math.sqrt(
+          Math.pow(neighborCenter.x - endCenter.x, 2) + Math.pow(neighborCenter.y - endCenter.y, 2)
+        );
+        fScore[neighbor.pathwayId] = tentativeG + h;
+        
+        if (!openSet.find(n => n.pathwayId === neighbor.pathwayId)) {
+          openSet.push({ pathwayId: neighbor.pathwayId, g: tentativeG, f: fScore[neighbor.pathwayId] });
+        }
+      }
+    }
+  }
+  
+  console.warn('No path found through traced pathways');
+  console.log('Start pathway:', startPathwayId, 'End pathway:', endPathwayId);
+  console.log('Graph connections:', Object.keys(graph).map(id => ({
+    id,
+    neighbors: graph[id].neighbors.map(n => n.pathwayId)
+  })));
+  
+  // Last resort: try to use the start and end pathways individually
+  // even if they're not connected, at least follow the pathways partially
+  console.log('Attempting fallback: using start and end pathways individually');
+  const startPathwayFallback = TRACED_PATHWAYS.find(p => p.id === startPathwayId);
+  const endPathwayFallback = TRACED_PATHWAYS.find(p => p.id === endPathwayId);
+  
+  if (startPathwayFallback && endPathwayFallback) {
+    const path = [{ lat: startLat, lng: startLng }];
+    
+    // Add points from start pathway (from nearest point to end)
+    const startIdx = startNearest.pointIndex;
+    for (let i = startIdx; i < startPathwayFallback.points.length; i++) {
+      const point = startPathwayFallback.points[i];
+      const gps = pixelToGps(point.x, point.y);
+      path.push(gps);
+    }
+    
+    // Add points from end pathway (from start to nearest point)
+    const endIdx = endNearest.pointIndex;
+    for (let i = 0; i <= endIdx; i++) {
+      const point = endPathwayFallback.points[i];
+      const gps = pixelToGps(point.x, point.y);
+      path.push(gps);
+    }
+    
+    path.push({ lat: endLat, lng: endLng });
+    console.log('Fallback route created:', path.length, 'points');
+    return path;
+  }
+  
+  return null;
+}
+
 // Show directions (route visualization)
 function showDirections() {
   if (!selectedLocation || userLat === null || userLng === null) {
@@ -1249,6 +3257,9 @@ function showDirections() {
     routeLine.remove();
     routeLine = null;
   }
+  
+  const existingRoutes = mapContainer.querySelectorAll('.route-line, svg.route-svg');
+  existingRoutes.forEach(route => route.remove());
 
   // Ensure mapContainer has position relative
   if (mapContainer) {
@@ -1258,64 +3269,119 @@ function showDirections() {
     }
   }
 
-  // Create route line
+  // Try to find route through traced pathways first
+  const tracedPath = findRouteThroughTracedPathways(
+    userLat, userLng,
+    selectedLocation.lat, selectedLocation.lng
+  );
+  
+  if (tracedPath && tracedPath.length > 1) {
+    // Draw route following traced pathways
+    console.log('Using traced pathway route with', tracedPath.length, 'points');
+    
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.style.position = 'absolute';
+    svg.style.top = '0';
+    svg.style.left = '0';
+    svg.style.width = '100%';
+    svg.style.height = '100%';
+    svg.style.pointerEvents = 'none';
+    svg.style.zIndex = '15';
+    svg.setAttribute('class', 'route-svg');
+    
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    let pathData = '';
+    
+    for (let i = 0; i < tracedPath.length; i++) {
+      const pixelPos = gpsToPixel(tracedPath[i].lat, tracedPath[i].lng);
+      if (i === 0) {
+        pathData += `M ${pixelPos.x} ${pixelPos.y}`;
+      } else {
+        pathData += ` L ${pixelPos.x} ${pixelPos.y}`;
+      }
+    }
+    
+    path.setAttribute('d', pathData);
+    path.setAttribute('stroke', '#ff6b00');
+    path.setAttribute('stroke-width', '6');
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke-linecap', 'round');
+    path.setAttribute('stroke-linejoin', 'round');
+    path.setAttribute('opacity', '0.9');
+    path.style.filter = 'drop-shadow(0 2px 4px rgba(255, 107, 0, 0.6))';
+    
+    svg.appendChild(path);
+    mapContainer.appendChild(svg);
+    routeLine = svg;
+    
+    // Calculate distance along path
+    let totalDistance = 0;
+    for (let i = 0; i < tracedPath.length - 1; i++) {
+      const dist = calculateDistance(
+        tracedPath[i].lat, tracedPath[i].lng,
+        tracedPath[i + 1].lat, tracedPath[i + 1].lng
+      );
+      const distMeters = parseFloat(dist.replace(' m', '').replace(' km', '')) * (dist.includes('km') ? 1000 : 1);
+      totalDistance += distMeters;
+    }
+    
+    const distanceText = totalDistance < 1000 ? totalDistance.toFixed(0) + ' m' : (totalDistance / 1000).toFixed(2) + ' km';
+    
+    if (info) {
+      let accuracyText = '';
+      if (userAccuracy) {
+        accuracyText = ` (Accuracy: ±${Math.round(userAccuracy)}m)`;
+      }
+
+      info.innerHTML = `
+        <div class="info-item">
+          <strong>Your Location:</strong> 
+          <span>Lat ${userLat.toFixed(6)}, Lng ${userLng.toFixed(6)}</span>${accuracyText}
+        </div>
+        <div class="info-item">
+          <strong>Destination:</strong> 
+          <span class="location-name">${selectedLocation.name}</span>
+        </div>
+        <div class="info-distance">
+          <strong>Distance:</strong> <span class="distance-value">${distanceText}</span>
+        </div>
+        <div class="info-hint">
+          <i class="fas fa-route"></i> Route follows traced pathways
+        </div>
+      `;
+    }
+    
+    return;
+  }
+
+  // Fallback to straight line if no traced pathways
   const startPos = gpsToPixel(userLat, userLng);
   const endPos = gpsToPixel(selectedLocation.lat, selectedLocation.lng);
-
-  console.log('Creating route:', {
-    start: startPos,
-    end: endPos,
-    userLocation: { lat: userLat, lng: userLng },
-    destination: { lat: selectedLocation.lat, lng: selectedLocation.lng }
-  });
 
   routeLine = document.createElement('div');
   routeLine.className = 'route-line';
   
-  // Calculate line properties
   const dx = endPos.x - startPos.x;
   const dy = endPos.y - startPos.y;
   const length = Math.sqrt(dx * dx + dy * dy);
   const angle = Math.atan2(dy, dx) * 180 / Math.PI;
 
-  // Set all styles explicitly
   routeLine.style.position = 'absolute';
   routeLine.style.pointerEvents = 'none';
-  routeLine.style.zIndex = '15'; // Higher than markers (which are z-index 10)
+  routeLine.style.zIndex = '15';
   routeLine.style.width = length + 'px';
-  routeLine.style.height = '6px'; // Slightly thicker for visibility
-  routeLine.style.backgroundColor = '#4285f4';
+  routeLine.style.height = '6px';
+  routeLine.style.backgroundColor = '#ff6b00';
   routeLine.style.left = startPos.x + 'px';
-  routeLine.style.top = (startPos.y - 3) + 'px'; // Center vertically (half of height)
+  routeLine.style.top = (startPos.y - 3) + 'px';
   routeLine.style.transformOrigin = '0 50%';
   routeLine.style.transform = `rotate(${angle}deg)`;
-  routeLine.style.boxShadow = '0 2px 8px rgba(66, 133, 244, 0.6)';
+  routeLine.style.boxShadow = '0 2px 8px rgba(255, 107, 0, 0.6)';
   routeLine.style.borderRadius = '3px';
   routeLine.style.opacity = '0.9';
 
-  if (mapContainer) {
-    // Remove any existing route lines first
-    const existingRoutes = mapContainer.querySelectorAll('.route-line');
-    existingRoutes.forEach(route => route.remove());
-    
-    mapContainer.appendChild(routeLine);
-    console.log('Route line added to mapContainer', {
-      element: routeLine,
-      styles: {
-        left: routeLine.style.left,
-        top: routeLine.style.top,
-        width: routeLine.style.width,
-        height: routeLine.style.height,
-        zIndex: routeLine.style.zIndex,
-        backgroundColor: routeLine.style.backgroundColor
-      },
-      computed: window.getComputedStyle(routeLine)
-    });
-  } else {
-    console.error('mapContainer not found!');
-  }
+  mapContainer.appendChild(routeLine);
 
-  // Update info with directions
   const distance = calculateDistance(userLat, userLng, selectedLocation.lat, selectedLocation.lng);
   const bearing = calculateBearing(userLat, userLng, selectedLocation.lat, selectedLocation.lng);
   const direction = getDirectionText(bearing);
@@ -1342,7 +3408,7 @@ function showDirections() {
         <strong>Direction:</strong> <span>${direction}</span>
       </div>
       <div class="info-hint">
-        <i class="fas fa-route"></i> Route shown on map (blue line)
+        <i class="fas fa-route"></i> Direct route (trace pathways to follow black lines)
       </div>
     `;
   }
