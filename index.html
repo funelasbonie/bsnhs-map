@@ -1,144 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
+   <title>BSNHS digital map</title>
+     <link rel="icon" href="images/bsnhs.png" type="image/x-icon">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BSNHS Ditital Map </title>
-    <link rel="icon" href="images/bsnhs.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css ">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-      crossorigin="anonymous" />
-     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>log in</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+    crossorigin="anonymous" />
+  <style>
+    :root{
+      --primary-purple: #7124c4;
+      --primary-purple-dark: #5a1d9d;
+      --primary-purple-light: #8d3de0;
+      --text-dark: #1a1a1a;
+      --text-gray: #6b7280;
+      --border-gray: #e5e7eb;
+      --error-red: #ef4444;
+    }
+    
+    *{box-sizing: border-box}
+    html,body{height:100%; margin:0; padding:0;}
+    
+    body{
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #7124c4 100%);
+      background-attachment: fixed;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:20px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    body::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: moveBackground 20s linear infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes moveBackground {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    .wait{
+      width:100%; max-width:440px;
+      background-color:#fff;
+      border-radius:24px;
+      padding:40px 32px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1);
+      position: relative;
+      z-index: 1;
+      animation: slideUp 0.4s ease-out;
+    }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:16px; margin-bottom:32px;
+      text-align: left;
+    }
+    
+    .logo{
+      width:56px; height:56px; 
+      border-radius:16px; 
+      background: linear-gradient(135deg, #7124c4 0%, #8d3de0 100%);
+      display:flex; align-items:center; justify-content:center; 
+      font-weight:700; 
+      color:#fff; 
+      font-size:24px;
+      box-shadow:0 8px 20px rgba(113, 36, 196, 0.3);
+      flex-shrink: 0;
+    }
+    
+    .brand h1{
+      font-size:24px; 
+      margin:0; 
+      color: var(--text-dark);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    
+    .brand p{
+      margin:4px 0 0 0; 
+      color: var(--text-gray);
+      font-size:14px;
+      font-weight: 400;
+    }
+
+    /* tabs */
+    .tabs{
+      display:flex; 
+      gap:8px; 
+      margin-bottom:28px;
+      background: #f3f4f6;
+      padding:4px;
+      border-radius:12px;
+    }
+    
+    .tab{
+      flex:1; 
+      text-align:center; 
+      padding:10px 16px; 
+      border-radius:8px; 
+      cursor:pointer;
+      background: transparent; 
+      border: none;
+      transition: all 0.2s ease;
+      font-weight:600; 
+      font-size:14px;
+      color: var(--text-gray);
+    }
+    
+    .tab:hover{ 
+      background: rgba(255,255,255,0.5);
+      color: var(--text-dark);
+    }
+    
+    .tab.active{
+      background: #fff;
+      color: var(--primary-purple);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    form{display:none;}
+    form.active{display:block; animation: fadeIn 0.3s ease-out;}
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .field{
+      margin-bottom:20px;
+      position: relative;
+    }
+    
+    label{
+      display:block; 
+      font-size:13px; 
+      margin-bottom:8px; 
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+    
+    .input-wrapper {
+      position: relative;
+    }
+    
+    .input-wrapper i {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-gray);
+      font-size: 16px;
+      pointer-events: none;
+    }
+    
+    input{
+      width:100%; 
+      padding:14px 16px 14px 48px; 
+      border-radius:12px; 
+      border:2px solid var(--border-gray);
+      background: #fff;
+      outline:none; 
+      font-size:15px;
+      transition: all 0.2s ease;
+      color: var(--text-dark);
+      font-family: inherit;
+    }
+    
+    input:focus{ 
+      border-color: var(--primary-purple);
+      box-shadow: 0 0 0 4px rgba(113, 36, 196, 0.1);
+    }
+    
+    input::placeholder {
+      color: #9ca3af;
+    }
+
+    .actions{
+      display:flex; 
+      gap:12px; 
+      margin-top:24px;
+    }
+    
+    .btn{
+      flex:1; 
+      padding:14px 20px; 
+      border-radius:12px; 
+      font-weight:600; 
+      cursor:pointer; 
+      border: none;
+      font-size:15px;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .btn:not(.primary){
+      background: #f3f4f6;
+      color: var(--text-dark);
+    }
+    
+    .btn:not(.primary):hover{ 
+      background: #e5e7eb;
+      transform: translateY(-1px);
+    }
+
+    .btn.primary{
+      background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-purple-light) 100%);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(113, 36, 196, 0.3);
+    }
+    
+    .btn.primary:hover{ 
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(113, 36, 196, 0.4);
+    }
+    
+    .btn.primary:active {
+      transform: translateY(0);
+    }
+    
+    .btn.primary a{
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .error-message{
+      color: var(--error-red);
+      font-size: 13px;
+      margin-top: 12px;
+      text-align: center;
+      display: none;
+      padding: 10px;
+      background: #fef2f2;
+      border-radius: 8px;
+      border: 1px solid #fecaca;
+    }
+    
+    .error-message.show{
+      display: block;
+      animation: shake 0.4s ease;
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      75% { transform: translateX(8px); }
+    }
+
+    .small{font-size:12px; opacity:0.95}
+
+    @media (max-width:480px){
+      .wait{padding:32px 24px;}
+      .brand h1{font-size:20px}
+      .logo{width:48px; height:48px; font-size:20px;}
+    }
+
+    
+    
+  </style>
 </head>
 <body>
-    <!--navbar-->
-    <nav class="navbar">
-        <div class= "navbar__container">
-            <a href="" id="navbar__logo"><i class="fas fa-map"></i>     BSNHS </a>
-            <div class="navbar__toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-           
-            <ul class="navbar__menu">
-                <li class="navbar__item">
-                    <a href="index.html" class="navbar__links">Home</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="map.html" class="navbar__links">Room</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="room pics.html" class="navbar__links"> Room Pics </a>    
-                </li>
-                 <li class="navbar__item">
-                    <a href="buildings.html" class="navbar__links"> Buildings </a>    
-                </li>
-                
-                <li class="navbar__item">
-                    <a href="About.html" class="navbar__links"> About</a>    
-                </li>
-                
-                <li class="navbar__item">
-                    <a href="team.html" class="navbar__links">Team</a>
-                </li>
-                
 
+  
+    
         
-            </ul>
-        </div>
-    </nav>
 
-    <!--pinaka home page-->
-    <div class="main">
-        <div class="main__container">
-            <div class="main__content">
-                <h1>BSNHS <br> DIGITAL MAP</h1>
-                
-                <p>Where to go? Find your room.</p>
-                <button class="main__btn"><a href="search.html">Get started</a></button>
-            </div>
-            <div class="main__image--container">
-                <img src="images/eto.svg" alt="pic" id="mian__img" class="picture">
-               
-            </div>
-            
-        </div>
+  <div class="wait" role="region" aria-label="Login container">
+    <div class="brand">
+      <div class="logo">
+        <i class="fas fa-map-marked-alt"></i>
+      </div>
+      <div>
+        <h1>BSNHS Digital Map</h1>
+        <p class="small">Welcome back! Please sign in to continue</p>
+      </div>
     </div>
-    <!--yung mga special program-->
-    <div class="services">
-        <h1>BSNHS Special Program</h1>
-        <div class="services__container">
-            <div class="ako_nalang">
-                <h1>SP-STE</h1>
-                <p>Science Technology and Engineering </p>
-                <button><a href="ste.html"> View </a></button>
-            </div>
-             <div class="services__card22">
-                <h1>SP-ICT</h1>
-                <p>Information Communication Technology </p>
-                <button><a href="ict.html"> View </a></button>
-            </div>
-             <div class="services__card3">
-                <h1>SP-TVE</h1>
-                <p> Technical-Vocational Education</p>
-                <button><a href="tve.html"> View </a></button>
-            </div>
-             <div class="services__card4">
-                <h1>SPA</h1>
-                <p>Special Program In Arts</p>
-                <button><a href="spa.html"> View </a></button>
-            </div>
-        </div>
+
+    <div class="tabs" role="tablist">
+      <div class="tab active" data-target="login" role="tab" tabindex="0">Log In</div>
+      <div class="tab" data-target="guest" role="tab" tabindex="0">Use as Guest</div>
     </div>
+
+    <!-- yung pag log in -->
+    <form id="login" class="active" autocomplete="on">
+      <div class="field">
+        <label for="email">Email Address</label>
+        <div class="input-wrapper">
+          <i class="fas fa-envelope"></i>
+          <input id="email" type="email" placeholder="Enter your email" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <i class="fas fa-lock"></i>
+          <input id="password" type="password" placeholder="Enter your password" required>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="submit" class="btn primary" style="flex: 1;">
+          <i class="fas fa-sign-in-alt"></i>
+          Log In
+        </button>
+      </div>
+      <div class="error-message" id="errorMessage"></div>
+    </form>
+
+    <!-- yung walang acc -->
+    <form id="guest">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <i class="fas fa-user-circle" style="font-size: 48px; color: var(--primary-purple); margin-bottom: 12px;"></i>
+        <p style="color: var(--text-gray); font-size: 14px; margin: 0;">Continue without an account</p>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn" onclick="switchTo('login')">
+          <i class="fas fa-arrow-left"></i>
+          Back
+        </button>
+        <button type="button" class="btn primary">
+            <a href="home.html">
+              <i class="fas fa-arrow-right"></i>
+              Continue as Guest
+            </a>
+          </button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Test users array
+    const testUsers = [
+      { email: 'admin@bsnhs.edu', password: 'admin123', name: 'Administrator' },
+      { email: 'teacher@bsnhs.edu', password: 'teacher123', name: 'Teacher' },
+      { email: 'student@bsnhs.edu', password: 'student123', name: 'Student' },
+      { email: 'test@bsnhs.edu', password: 'test123', name: 'Test User' },
+      { email: 'user1@bsnhs.edu', password: 'password1', name: 'User One' },
+      { email: 'user2@bsnhs.edu', password: 'password2', name: 'User Two' }
+    ];
    
+    const tabs = document.querySelectorAll('.tab');
+    const forms = document.querySelectorAll('form');
+    tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.target)));
+    tabs.forEach(t => t.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key===' ') { e.preventDefault(); activate(t.dataset.target) } }));
 
-    <!-- pinaka baba na -->
-     <div class="footer__container">
-        <div class="footer__links">
-            <div class="footer__link--wrapper">
-                <div class="footer__link--item">
-                    <h2>About</h2>
-                    <a href="/">https://www.facebook.com/share/1Ek8t9xj3X/</a>
-                    <a href="/">0917 125 8749</a>
-                    <a href="/">300809@deped.gov.ph</a>
-                    <a href="/">Guimba, Philippines, 3115</a>
-                   
-                </div>
-               
-                 <!-- <div class="footer__link--item">+
-                    <h2>Group Members</h2>
-                    <a href="">Prince Noel Galapon</a>
-                    <a href="">Reycris Acosta</a>
-                    <a href="">Jamella Narine Mapa</a>
-                    <a href="">Gwen Dannica Ruz</a>
-                    <a href="">Mary Ann Malasaga</a>
-                    <a href="">Jenison Te</a>
-                    <a href="">Jacob Jed Narciso</a>
-                </div> -->
-            </div>
-        </div>
-        <div class="social__media">
-            <div class="social__media--wrap">
-                <div class="footer__logo">
-                    <a href="/" id="footer__logo">                       
-                        <i class="fas fa-map"></i>
-                        BSNHS
-                    </a>
-                </div>
-                <p class="website__rights">BSNHS 2025 digital map </p>
-                <div class="social__icons">
-                    <a href="https://web.facebook.com/bsnhs1994" class="social__icon--link" target="-blank"> <i class="fab fa-facebook"></i> </a>
-                     <a href="https://www.instagram.com/angalingawngaw" class="social__icon--link" target="-blank"> <i class="fab fa-instagram"></i> </a>
-                      <a href="https://www.youtube.com/watch?v=9jh6BTETMIw" class="social__icon--link" target="-blank"> <i class="fab fa-youtube"></i> </a>
-                     
-                </div>
-               <p class="cred">Music credit to:Mark Jay Felipe</p>
-            </div>
-        </div>
-     </div>
+    function activate(name){
+      tabs.forEach(t => t.classList.toggle('active', t.dataset.target === name));
+      forms.forEach(f => f.classList.toggle('active', f.id === name));
+    }
 
-    <script src="app.js"></script>
+    function switchTo(name){ activate(name); }
+
+    // Login form handler
+    const loginForm = document.getElementById('login');
+    const errorMessage = document.getElementById('errorMessage');
+    
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      
+      // Check if user exists in test users
+      const user = testUsers.find(u => u.email === email && u.password === password);
+      
+      if (user) {
+        // Login successful - redirect to homepage
+        errorMessage.classList.remove('show');
+        window.location.href = 'home.html';
+      } else {
+        // Login failed - show error
+        errorMessage.textContent = 'Invalid email or password. Please try again.';
+        errorMessage.classList.add('show');
+      }
+    });
+    
+    // Guest form handler
+    const guestForm = document.getElementById('guest');
+    guestForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      window.location.href = 'home.html';
+    });
+  </script>
 </body>
-</html>   
+</html>

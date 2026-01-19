@@ -1,9 +1,0 @@
-# Netlify configuration file
-# This file tells Netlify to serve log.html as the default page
-
-[[redirects]]
-  from = "/"
-  to = "/log.html"
-  status = 200
-  force = true
-

@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-     <link rel="icon" href="images/bsnhs.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>BSNHS Ditital Map </title>
+    <link rel="icon" href="images/bsnhs.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css ">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
       integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
@@ -12,43 +12,89 @@
      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!--navbar section-->
-     <nav class="navbar">
+    <!--navbar-->
+    <nav class="navbar">
         <div class= "navbar__container">
-            <a href="" id="navbar__logo"><i class="fas fa-map"></i>   BSNHS </a>
+            <a href="" id="navbar__logo"><i class="fas fa-map"></i>     BSNHS </a>
             <div class="navbar__toggle" id="mobile-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
+           
             <ul class="navbar__menu">
                 <li class="navbar__item">
                     <a href="home.html" class="navbar__links">Home</a>
-                   
                 </li>
                 <li class="navbar__item">
-                    <a href="team.html" class="navbar__links">Room</a>
-                    
+                    <a href="map.html" class="navbar__links">Room</a>
                 </li>
-                 <li class="navbar__item">
+                <li class="navbar__item">
                     <a href="room pics.html" class="navbar__links"> Room Pics </a>    
                 </li>
-                    <li class="navbar__item">
+                 <li class="navbar__item">
                     <a href="buildings.html" class="navbar__links"> Buildings </a>    
                 </li>
+                
                 <li class="navbar__item">
                     <a href="About.html" class="navbar__links"> About</a>    
                 </li>
+                
                 <li class="navbar__item">
                     <a href="team.html" class="navbar__links">Team</a>
                 </li>
-               
                 
+
+        
             </ul>
         </div>
     </nav>
 
-    
+    <!--pinaka home page-->
+    <div class="main">
+        <div class="main__container">
+            <div class="main__content">
+                <h1>BSNHS <br> DIGITAL MAP</h1>
+                
+                <p>Where to go? Find your room.</p>
+                <button class="main__btn"><a href="search.html">Get started</a></button>
+            </div>
+            <div class="main__image--container">
+                <img src="images/eto.svg" alt="pic" id="mian__img" class="picture">
+               
+            </div>
+            
+        </div>
+    </div>
+    <!--yung mga special program-->
+    <div class="services">
+        <h1>BSNHS Special Program</h1>
+        <div class="services__container">
+            <div class="ako_nalang">
+                <h1>SP-STE</h1>
+                <p>Science Technology and Engineering </p>
+                <button><a href="ste.html"> View </a></button>
+            </div>
+             <div class="services__card22">
+                <h1>SP-ICT</h1>
+                <p>Information Communication Technology </p>
+                <button><a href="ict.html"> View </a></button>
+            </div>
+             <div class="services__card3">
+                <h1>SP-TVE</h1>
+                <p> Technical-Vocational Education</p>
+                <button><a href="tve.html"> View </a></button>
+            </div>
+             <div class="services__card4">
+                <h1>SPA</h1>
+                <p>Special Program In Arts</p>
+                <button><a href="spa.html"> View </a></button>
+            </div>
+        </div>
+    </div>
+   
+
+    <!-- pinaka baba na -->
      <div class="footer__container">
         <div class="footer__links">
             <div class="footer__link--wrapper">
@@ -58,10 +104,10 @@
                     <a href="/">0917 125 8749</a>
                     <a href="/">300809@deped.gov.ph</a>
                     <a href="/">Guimba, Philippines, 3115</a>
-                    
+                   
                 </div>
-                 
-                 <!-- <div class="footer__link--item">
+               
+                 <!-- <div class="footer__link--item">+
                     <h2>Group Members</h2>
                     <a href="">Prince Noel Galapon</a>
                     <a href="">Reycris Acosta</a>
@@ -86,7 +132,8 @@
                     <a href="https://web.facebook.com/bsnhs1994" class="social__icon--link" target="-blank"> <i class="fab fa-facebook"></i> </a>
                      <a href="https://www.instagram.com/angalingawngaw" class="social__icon--link" target="-blank"> <i class="fab fa-instagram"></i> </a>
                       <a href="https://www.youtube.com/watch?v=9jh6BTETMIw" class="social__icon--link" target="-blank"> <i class="fab fa-youtube"></i> </a>
-                       
+                     
+                </div>
                <p class="cred">Music credit to:Mark Jay Felipe</p>
             </div>
         </div>
@@ -94,4 +141,5 @@
 
     <script src="app.js"></script>
 </body>
-</html>     
+</html>
+
