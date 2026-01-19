@@ -5,4 +5,5 @@
   from = "/"
   to = "/log.html"
   status = 200
+  force = true
 
