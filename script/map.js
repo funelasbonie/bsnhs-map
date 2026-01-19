@@ -13817,6 +13817,141 @@ const LOCATIONS = [
     "lng": 120.771883,
     "category": "classroom 1st floor"
   },
+
+  {
+
+"name": "Principals office",
+
+"type": "facility",
+
+"lat": 15.660018,
+
+"lng":120.772222,
+
+"category": "office 1st floor"
+
+},
+
+{
+
+"name": "Head teachers office",
+
+"type": "facility",
+
+"lat": 15.659992,
+
+"lng":120.772220,
+
+"category": "office 1st floor"
+},
+{
+
+"name": "SBM office",
+
+"type": "facility",
+
+"lat": 15.659996,
+
+"lng":120.772464,
+
+"category": "office 1st floor"
+
+},
+{
+
+"name": "ASP II office",
+
+"type": "facility",
+
+"lat": 15.660375,
+
+"lng":120.771802,
+
+"category": "office 1st floon"
+
+},
+
+{
+
+"name": "JHS com lab",
+
+"type": "facility",
+
+"lat": 15.659994,
+
+"lng": 128.772344,
+
+"category": "facility 2nd floor"
+},
+
+
+{
+"name": "Registrar/Cashier",
+
+"type": "facility",
+
+"lat": 15.659998,
+
+"lng":120.772112,
+
+"category": "facility 1st floor"
+
+}, 
+
+{
+
+"name": "JHS bodega",
+
+"type": "facility",
+
+"lat": 15.660133,
+
+"lng":120.772529,
+
+"category": "facility"
+
+},
+{
+
+"name": "Beauty care lab",
+
+"type": "facility",
+
+"lat": 15.660085,
+
+"lng":120.772533,
+
+"category": "facility"
+},
+{
+
+"name": "Guard house",
+
+"type": "facility",
+
+"lat":
+
+15.659932,
+
+"lng":120.771690,
+
+"category": "facility"
+},
+{
+
+"name": "DRRM",
+
+"type":
+
+"facility",
+
+"lat": 15.660030,
+
+"lng":120.772531,
+
+"category": "facility"
+},
+
 ];
 
 // Calculate bounding box from corners
