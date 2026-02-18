@@ -620,6 +620,138 @@
         
   }
 
+  .services__card17 {
+        margin: 1rem;
+        height: 525px;
+        width: 400px;
+        border-radius: 4px;
+        background-image: linear-gradient(to bottom, rgba(245, 245, 245, 0) 0%,
+        rgba(24, 7, 147, 0.6) 100%),
+        url('images/maryspa.jpg    ');
+        background-size:cover ;
+        position: relative;
+        color: #fff;
+        padding: 3rem;
+        
+  }
+
+  .services__card18 {
+        margin: 1rem;
+        height: 525px;
+        width: 400px;
+        border-radius: 4px;
+        background-image: linear-gradient(to bottom, rgba(245, 245, 245, 0) 0%,
+        rgba(24, 7, 147, 0.6) 100%),
+        url('images/christina.jpg    ');
+        background-size:cover ;
+        position: relative;
+        color: #fff;
+        padding: 3rem;
+        
+  }
+
+  .services__card19 {
+        margin: 1rem;
+        height: 525px;
+        width: 400px;
+        border-radius: 4px;
+        background-image: linear-gradient(to bottom, rgba(245, 245, 245, 0) 0%,
+        rgba(24, 7, 147, 0.6) 100%),
+        url('images/jasontve.jpg    ');
+        background-size:cover ;
+        position: relative;
+        color: #fff;
+        padding: 3rem;
+        
+  }
+   .services__card20 {
+        margin: 1rem;
+        height: 525px;
+        width: 400px;
+        border-radius: 4px;
+        background-image: linear-gradient(to bottom, rgba(245, 245, 245, 0) 0%,
+        rgba(24, 7, 147, 0.6) 100%),
+        url('images/arjanne.jpg    ');
+        background-size:cover ;
+        position: relative;
+        color: #fff;
+        padding: 3rem;
+        
+  }
+].services__card20 {
+        margin: 1rem;
+        height: 525px;
+        width: 400px;
+        border-radius: 4px;
+        background-image: linear-gradient(to bottom, rgba(245, 245, 245, 0) 0%,
+        rgba(24, 7, 147, 0.6) 100%),
+        url('images/arjanne.jpg    ');
+        background-size:cover ;
+        position: relative;
+        color: #fff;
+        padding: 3rem;
+        
+  }
+  .services__card20 {
+        margin: 1rem;
+        height: 525px;
+        width: 400px;
+        border-radius: 4px;
+        background-image: linear-gradient(to bottom, rgba(245, 245, 245, 0) 0%,
+        rgba(24, 7, 147, 0.6) 100%),
+        url('images/arjanne.jpg    ');
+        background-size:cover ;
+        position: relative;
+        color: #fff;
+        padding: 3rem;
+        
+  }
+
+  .services__card21 {
+        margin: 1rem;
+        height: 525px;
+        width: 400px;
+        border-radius: 4px;
+        background-image: linear-gradient(to bottom, rgba(245, 245, 245, 0) 0%,
+        rgba(24, 7, 147, 0.6) 100%),
+        url('images/10-Blessie.jpg    ');
+        background-size:cover ;
+        position: relative;
+        color: #fff;
+        padding: 3rem;
+        
+  }
+
+  .services__card22 {
+        margin: 1rem;
+        height: 525px;
+        width: 400px;
+        border-radius: 4px;
+        background-image: linear-gradient(to bottom, rgba(245, 245, 245, 0) 0%,
+        rgba(24, 7, 147, 0.6) 100%),
+        url('images/10-Imee.jpg    ');
+        background-size:cover ;
+        position: relative;
+        color: #fff;
+        padding: 3rem;
+        
+  }
+
+
+  .services__card23 {
+        margin: 1rem;
+        height: 525px;
+        width: 400px;
+        border-radius: 4px;
+        background-image: linear-gradient(to bottom, rgba(245, 245, 245, 0) 0%,
+        rgba(24, 7, 147, 0.6) 100%),
+        url('images/jenny.jpg    ');
+        background-size:cover ;
+        position: relative;
+        color: #fff;
+        padding: 3rem;
+        
+  }
 
     /* .services__card:nth-child(2) {
     background-image: linear-gradient(to bottom, rgba(245, 245, 245, 0) 0%,

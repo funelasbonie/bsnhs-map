@@ -15,7 +15,7 @@ const REFERENCE_POINTS = {
   gymCenter: { lat: 15.660099, lng: 120.772363 },
   gate: { lat: 15.660161, lng: 120.771885,
 
- 
+  
    }
 };
 
