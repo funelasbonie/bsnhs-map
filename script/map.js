@@ -13,7 +13,9 @@ const SCHOOL_BOUNDS = {
 // Reference Points for Calibration
 const REFERENCE_POINTS = {
   gymCenter: { lat: 15.660099, lng: 120.772363 },
-  gate: { lat: 15.660161, lng: 120.771885,
+  gate: { lat: 15.660024, lng: 120.771671,
+
+  
 
   
    }
@@ -12918,6 +12920,14 @@ const LOCATIONS = [
 //     "lng":      120.77245202339067,
 //     "category": "classroom"
 //   },
+
+{
+    "name": "Coop Canteen",
+    "type": "facility",
+    "lat": 15.659925,
+    "lng": 120.772540,
+    "category": "facility"
+  },
 
   {
     "name": "SPG/GUIDANCE",
