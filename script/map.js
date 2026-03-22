@@ -13860,6 +13860,9 @@ function handleMapClick(e) {
 
   const dest = pixelToGps(x, y);
 
+  // Set selected location so Get Directions works
+  selectedLocation = { lat: dest.lat, lng: dest.lng, name: 'Map position' };
+
   // Update info with destination
   if (info) {
     const start = getRouteStartPoint();
@@ -13875,6 +13878,11 @@ function handleMapClick(e) {
         <div class="info-hint">Click "Get My Location" to calculate distance.</div>
       `;
     }
+  }
+
+  // Show Get Directions button
+  if (directionsBtn) {
+    directionsBtn.style.display = 'block';
   }
 }
 
