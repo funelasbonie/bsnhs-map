@@ -23,7 +23,7 @@ const REFERENCE_POINTS = {
 
 // GPS MODE: Set to true to use real GPS, false to use gate coordinates (test mode)
 // Simple variable - change this to toggle between real GPS and test mode
-const USE_REAL_GPS = false; // Set to true for real GPS, false for test mode (gate)
+const USE_REAL_GPS = true; // Set to true for real GPS, false for test mode (gate)
 
 // ============================================================================
 // VISUAL PATHWAY TRACING SYSTEM
@@ -13762,6 +13762,15 @@ function isWithinSchoolBounds(lat, lng) {
          lng >= BOUNDS.west && lng <= BOUNDS.east;
 }
 
+// Get route start point: gate when user is outside bounds, otherwise user position
+function getRouteStartPoint() {
+  if (userLat === null || userLng === null) return null;
+  if (!isWithinSchoolBounds(userLat, userLng)) {
+    return { lat: REFERENCE_POINTS.gate.lat, lng: REFERENCE_POINTS.gate.lng };
+  }
+  return { lat: userLat, lng: userLng };
+}
+
 // Calculate distance between two GPS points using Haversine formula
 function calculateDistance(lat1, lng1, lat2, lng2) {
   const R = 6371; // Earth's radius in kilometers
@@ -13787,11 +13796,6 @@ function calculateDistance(lat1, lng1, lat2, lng2) {
 function updateUserMarker(lat, lng, accuracy = null) {
   if (!youMarker) return;
 
-  // Check if within bounds
-  if (!isWithinSchoolBounds(lat, lng)) {
-    showWarning("You appear to be outside the school campus. Location may not be accurate.");
-  }
-
   userLat = lat;
   userLng = lng;
   userAccuracy = accuracy;
@@ -13802,13 +13806,16 @@ function updateUserMarker(lat, lng, accuracy = null) {
   youMarker.style.top = position.y + 'px';
   youMarker.style.display = 'block';
 
-  // Update info
+  // Update info (include warning if outside bounds)
   if (info) {
+    const warningHtml = !isWithinSchoolBounds(lat, lng)
+      ? `<div class="warning-message"><i class="fas fa-exclamation-triangle"></i> You appear to be outside the school campus. Location may not be accurate.</div>`
+      : '';
     let accuracyText = '';
     if (accuracy) {
       accuracyText = ` (Accuracy: ±${Math.round(accuracy)}m)`;
     }
-    info.innerHTML = `
+    info.innerHTML = warningHtml + `
       <div class="info-item">
         <strong>Your Location:</strong> 
         <span>Lat ${lat.toFixed(6)}, Lng ${lng.toFixed(6)}</span>
@@ -13855,8 +13862,9 @@ function handleMapClick(e) {
 
   // Update info with destination
   if (info) {
-    if (userLat !== null && userLng !== null) {
-      const distance = calculateDistance(userLat, userLng, dest.lat, dest.lng);
+    const start = getRouteStartPoint();
+    if (start) {
+      const distance = calculateDistance(start.lat, start.lng, dest.lat, dest.lng);
       updateDistance(dest.lat, dest.lng, distance);
     } else {
       info.innerHTML = `
@@ -13874,8 +13882,9 @@ function handleMapClick(e) {
 function updateDistance(destLat, destLng, distance = null) {
   if (!info) return;
 
-  if (distance === null && userLat !== null && userLng !== null) {
-    distance = calculateDistance(userLat, userLng, destLat, destLng);
+  const start = getRouteStartPoint();
+  if (distance === null && start) {
+    distance = calculateDistance(start.lat, start.lng, destLat, destLng);
   }
 
   const dest = pixelToGps(
@@ -13883,16 +13892,19 @@ function updateDistance(destLat, destLng, distance = null) {
     parseFloat(pickMarker.style.top)
   );
 
+  const usingGate = start && !isWithinSchoolBounds(userLat, userLng);
+  const startLabel = start
+    ? (usingGate ? 'School Gate (outside campus)' : `Lat ${userLat.toFixed(6)}, Lng ${userLng.toFixed(6)}`)
+    : 'Not available';
   let accuracyText = '';
-  if (userAccuracy) {
+  if (userAccuracy && !usingGate) {
     accuracyText = ` (Accuracy: ±${Math.round(userAccuracy)}m)`;
   }
 
   info.innerHTML = `
     <div class="info-item">
-      <strong>Your Location:</strong> 
-      <span>Lat ${userLat.toFixed(6)}, Lng ${userLng.toFixed(6)}</span>
-      ${accuracyText}
+      <strong>Route from:</strong> 
+      <span>${startLabel}${accuracyText}</span>
     </div>
     <div class="info-item">
       <strong>Destination:</strong> 
@@ -14205,8 +14217,9 @@ function selectLocation(lat, lng, name) {
 
   // Update info panel
   if (info) {
-    if (userLat !== null && userLng !== null) {
-      const distance = calculateDistance(userLat, userLng, lat, lng);
+    const start = getRouteStartPoint();
+    if (start) {
+      const distance = calculateDistance(start.lat, start.lng, lat, lng);
       showLocationInfo(name, lat, lng, distance);
     } else {
       showLocationInfo(name, lat, lng);
@@ -14221,8 +14234,13 @@ function selectLocation(lat, lng, name) {
 
 // Show location information
 function showLocationInfo(name, lat, lng, distance = null) {
+  const start = getRouteStartPoint();
+  const usingGate = start && !isWithinSchoolBounds(userLat, userLng);
+  const startLabel = start
+    ? (usingGate ? 'School Gate (outside campus)' : `Lat ${userLat.toFixed(6)}, Lng ${userLng.toFixed(6)}`)
+    : 'Not available';
   let accuracyText = '';
-  if (userAccuracy) {
+  if (userAccuracy && !usingGate) {
     accuracyText = ` (Accuracy: ±${Math.round(userAccuracy)}m)`;
   }
 
@@ -14237,8 +14255,8 @@ function showLocationInfo(name, lat, lng, distance = null) {
 
   info.innerHTML = `
     <div class="info-item">
-      <strong>Your Location:</strong> 
-      ${userLat !== null ? `<span>Lat ${userLat.toFixed(6)}, Lng ${userLng.toFixed(6)}</span>${accuracyText}` : '<span>Not available</span>'}
+      <strong>Route from:</strong> 
+      <span>${startLabel}${accuracyText}</span>
     </div>
     <div class="info-item">
       <strong>Selected:</strong> 
@@ -14697,11 +14715,49 @@ function findRouteThroughTracedPathways(startLat, startLng, endLat, endLng) {
 
 // Show directions (route visualization)
 function showDirections() {
-  if (!selectedLocation || userLat === null || userLng === null) {
-    showError("Please select a location and ensure your location is available.");
+  if (!selectedLocation) {
+    showError("Please select a location first.");
     return;
   }
 
+  // If location not available yet, get it first then show directions
+  if (userLat === null || userLng === null) {
+    if (!navigator.geolocation) {
+      showError("Geolocation is not supported.");
+      return;
+    }
+    if (info) {
+      info.innerHTML = '<div class="info-hint"><i class="fas fa-spinner fa-spin"></i> Getting your location...</div>';
+    }
+    const options = { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 };
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        userLat = position.coords.latitude;
+        userLng = position.coords.longitude;
+        userAccuracy = position.coords.accuracy;
+        updateUserMarker(userLat, userLng, userAccuracy);
+        isTracking = true;
+        if (locBtn) {
+          locBtn.innerHTML = '<i class="fas fa-map-marker-alt"></i>';
+          locBtn.classList.add('active');
+        }
+        // Now run the directions logic
+        doShowDirections();
+      },
+      function(error) {
+        handleGeolocationError(error);
+        showError("Please allow location access to get directions.");
+      },
+      options
+    );
+    return;
+  }
+
+  doShowDirections();
+}
+
+// Core directions logic (assumes userLat/userLng and selectedLocation are set)
+function doShowDirections() {
   // Remove existing route line
   if (routeLine) {
     routeLine.remove();
@@ -14719,9 +14775,12 @@ function showDirections() {
     }
   }
 
+  const start = getRouteStartPoint();
+  if (!start) return;
+
   // Try to find route through traced pathways first
   const tracedPath = findRouteThroughTracedPathways(
-    userLat, userLng,
+    start.lat, start.lng,
     selectedLocation.lat, selectedLocation.lng
   );
   
@@ -14778,15 +14837,15 @@ function showDirections() {
     const distanceText = totalDistance < 1000 ? totalDistance.toFixed(0) + ' m' : (totalDistance / 1000).toFixed(2) + ' km';
     
     if (info) {
-      let accuracyText = '';
-      if (userAccuracy) {
-        accuracyText = ` (Accuracy: ±${Math.round(userAccuracy)}m)`;
-      }
+      const usingGate = !isWithinSchoolBounds(userLat, userLng);
+      const startLabel = usingGate
+        ? `School Gate (you're outside campus)`
+        : `Lat ${userLat.toFixed(6)}, Lng ${userLng.toFixed(6)}${userAccuracy ? ` (Accuracy: ±${Math.round(userAccuracy)}m)` : ''}`;
 
       info.innerHTML = `
         <div class="info-item">
-          <strong>Your Location:</strong> 
-          <span>Lat ${userLat.toFixed(6)}, Lng ${userLng.toFixed(6)}</span>${accuracyText}
+          <strong>Route from:</strong> 
+          <span>${startLabel}</span>
         </div>
         <div class="info-item">
           <strong>Destination:</strong> 
@@ -14805,7 +14864,7 @@ function showDirections() {
   }
 
   // Fallback to straight line if no traced pathways
-  const startPos = gpsToPixel(userLat, userLng);
+  const startPos = gpsToPixel(start.lat, start.lng);
   const endPos = gpsToPixel(selectedLocation.lat, selectedLocation.lng);
 
   routeLine = document.createElement('div');
@@ -14832,9 +14891,11 @@ function showDirections() {
 
   mapContainer.appendChild(routeLine);
 
-  const distance = calculateDistance(userLat, userLng, selectedLocation.lat, selectedLocation.lng);
-  const bearing = calculateBearing(userLat, userLng, selectedLocation.lat, selectedLocation.lng);
+  const distance = calculateDistance(start.lat, start.lng, selectedLocation.lat, selectedLocation.lng);
+  const bearing = calculateBearing(start.lat, start.lng, selectedLocation.lat, selectedLocation.lng);
   const direction = getDirectionText(bearing);
+
+  const usingGate = !isWithinSchoolBounds(userLat, userLng);
 
   if (info) {
     let accuracyText = '';
@@ -14842,10 +14903,14 @@ function showDirections() {
       accuracyText = ` (Accuracy: ±${Math.round(userAccuracy)}m)`;
     }
 
+    const startLabel = usingGate
+      ? `School Gate (you're outside campus)`
+      : `Lat ${userLat.toFixed(6)}, Lng ${userLng.toFixed(6)}${accuracyText}`;
+
     info.innerHTML = `
       <div class="info-item">
-        <strong>Your Location:</strong> 
-        <span>Lat ${userLat.toFixed(6)}, Lng ${userLng.toFixed(6)}</span>${accuracyText}
+        <strong>Route from:</strong> 
+        <span>${startLabel}</span>
       </div>
       <div class="info-item">
         <strong>Destination:</strong> 
