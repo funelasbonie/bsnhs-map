@@ -3,19 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BSNHS Ditital Map </title>
+    <title>Buildings - BSNHS Digital Map</title>
     <link rel="icon" href="images/bsnhs.png" type="image/x-icon">
     <link rel="stylesheet" href="tangina.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
       integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
       crossorigin="anonymous" />
      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body.buildings-page {
+            background-image: linear-gradient(rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.78) 100%), url('images/bg2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        .buildings-page .services { padding: 3rem 2rem 5rem; }
+        .buildings-page .services h1 { color: #1a1f36; font-size: 2rem; font-weight: 700; margin-bottom: 2.5rem; letter-spacing: -0.5px; }
+        .buildings-page .services__container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: min(100%, 1400px);
+            margin: 0 auto;
+            padding: 0 2rem;
+            box-sizing: border-box;
+        }
+        .buildings-page .services__ewan1,
+        .buildings-page .services__ewan2,
+        .buildings-page .services__ewan3,
+        .buildings-page .services__ewan4,
+        .buildings-page .services__ewan5,
+        .buildings-page .services__ewan6 {
+            margin: 0; height: 420px; width: 100%; max-width: 100%; border-radius: 16px; padding: 0;
+            display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.12), 0 2px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-size: cover; background-position: center;
+        }
+        .buildings-page .services__ewan1:hover,
+        .buildings-page .services__ewan2:hover,
+        .buildings-page .services__ewan3:hover,
+        .buildings-page .services__ewan4:hover,
+        .buildings-page .services__ewan5:hover,
+        .buildings-page .services__ewan6:hover {
+            transform: translateY(-6px); box-shadow: 0 16px 50px rgba(0,0,0,0.18);
+        }
+        .buildings-page .services__ewan1 { background-image: linear-gradient(to top, rgba(21,13,75,0.9) 0%, rgba(21,13,75,0.35) 50%, transparent 100%), url('images/ewan.jpg'); }
+        .buildings-page .services__ewan2 { background-image: linear-gradient(to top, rgba(21,13,75,0.9) 0%, rgba(21,13,75,0.35) 50%, transparent 100%), url('images/ewan2.jpg'); }
+        .buildings-page .services__ewan3 { background-image: linear-gradient(to top, rgba(21,13,75,0.9) 0%, rgba(21,13,75,0.35) 50%, transparent 100%), url('images/ewan3.jpg'); }
+        .buildings-page .services__ewan4 { background-image: linear-gradient(to top, rgba(21,13,75,0.9) 0%, rgba(21,13,75,0.35) 50%, transparent 100%), url('images/ewan5.jpg'); }
+        .buildings-page .services__ewan5 { background-image: linear-gradient(to top, rgba(21,13,75,0.9) 0%, rgba(21,13,75,0.35) 50%, transparent 100%), url('images/ewan6.jpg'); }
+        .buildings-page .services__ewan6 { background-image: linear-gradient(to top, rgba(21,13,75,0.9) 0%, rgba(21,13,75,0.35) 50%, transparent 100%), url('images/ewan7.jpg'); }
+        .buildings-page .services__ewan1 h1,
+        .buildings-page .services__ewan2 h1,
+        .buildings-page .services__ewan3 h1,
+        .buildings-page .services__ewan4 h1,
+        .buildings-page .services__ewan5 h1,
+        .buildings-page .services__ewan6 h1 {
+            font-size: 1.5rem; font-weight: 700; color: #fff; margin: 0 0 0.75rem 0; padding: 0 1.25rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .buildings-page .services__ewan1 button,
+        .buildings-page .services__ewan2 button,
+        .buildings-page .services__ewan3 button,
+        .buildings-page .services__ewan4 button,
+        .buildings-page .services__ewan5 button,
+        .buildings-page .services__ewan6 button {
+            position: static; align-self: flex-start; margin: 0 1.25rem 1.25rem 1.25rem; padding: 10px 20px;
+            border-radius: 10px; background: #fff; color: #3350a8; font-weight: 600; font-size: 0.9rem;
+            border: none; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .buildings-page .services__ewan1 button:hover,
+        .buildings-page .services__ewan2 button:hover,
+        .buildings-page .services__ewan3 button:hover,
+        .buildings-page .services__ewan4 button:hover,
+        .buildings-page .services__ewan5 button:hover,
+        .buildings-page .services__ewan6 button:hover {
+            background: #3350a8; color: #fff; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(51,80,168,0.4);
+        }
+        .buildings-page .services__ewan1 button a,
+        .buildings-page .services__ewan2 button a,
+        .buildings-page .services__ewan3 button a,
+        .buildings-page .services__ewan4 button a,
+        .buildings-page .services__ewan5 button a,
+        .buildings-page .services__ewan6 button a { color: inherit; text-decoration: none; }
+        @media (max-width: 1024px) { .buildings-page .services__container { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 640px) {
+            .buildings-page .services__container { grid-template-columns: 1fr; }
+            .buildings-page .services__ewan1, .buildings-page .services__ewan2, .buildings-page .services__ewan3,
+            .buildings-page .services__ewan4, .buildings-page .services__ewan5, .buildings-page .services__ewan6 { height: 360px; }
+        }
+    </style>
 </head>
-<body>
+<body class="buildings-page">
     <!--navbar-->
       <nav class="navbar">
         <div class= "navbar__container">
-            <a href="" id="navbar__logo"><i class="fas fa-map"></i>     BSNHS </a>
+            <a href="home.html" id="navbar__logo"><i class="fas fa-map"></i> BSNHS</a>
             <div class="navbar__toggle" id="mobile-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -56,31 +141,28 @@
         <h1>Buildings Of BSNHS</h1>
         <div class="services__container">
             <div class="services__ewan1">
-                <h1></h1>
-                <p></p>
-                <button><a href="building1.html"> View </a></button>
+                <h1>Building 1</h1>
+                <button><a href="building1.html">View</a></button>
             </div>
              <div class="services__ewan2">
-                <h1></h1>
-               
-                <button><a href="building2.html"> View </a></button>
+                <h1>Building 2</h1>
+                <button><a href="building2.html">View</a></button>
             </div>
              <div class="services__ewan3">
-                <h1></h1>
-                <button><a href="building3.html"> View </a></button>
+                <h1>Building 3</h1>
+                <button><a href="building3.html">View</a></button>
             </div>
               <div class="services__ewan4">
-                <h1></h1>
-                <button><a href="building4.html"> View </a></button>
+                <h1>Building 4</h1>
+                <button><a href="building4.html">View</a></button>
             </div>
-            
              <div class="services__ewan5">
-                <h1></h1>
-                <button><a href="building5.html"> View </a></button>
+                <h1>Building 5</h1>
+                <button><a href="building5.html">View</a></button>
             </div>
                <div class="services__ewan6">
-                <h1></h1>
-                <button><a href="building6.html"> View </a></button>
+                <h1>Building 6</h1>
+                <button><a href="building6.html">View</a></button>
             </div>
         </div>
     </div>
