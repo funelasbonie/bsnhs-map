@@ -13,7 +13,7 @@ const SCHOOL_BOUNDS = {
 // Reference Points for Calibration
 const REFERENCE_POINTS = {
   gymCenter: { lat: 15.660099, lng: 120.772363 },
-  gate: { lat: 15.660024, lng: 120.771671,
+  gate: { lat: 15.660018, lng: 120.771677,
 
   
 
@@ -12564,1403 +12564,984 @@ function drawTracingPreview() {
 // See LOCATIONS_GUIDE.md for documentation on adding locations
 // Dito ka magaaddd ng locations
 const LOCATIONS = [
-  {
-    "name": "Gymnasium",
-    "type": "building",
-    "lat": 15.660175,
-    "lng": 120.772256,
-    "category": "facility"
-  },
 
-  {
-    "name": "School Gate",
-    "type": "entrance",
-    "lat": 15.660016,
-    "lng": 120.771680,
-    "category": "entrance"
-  },
 
 
-  {
-    "name": "Canteen",
-    "type": "facility",
-    "lat": 15.660353190420091,
-    "lng": 120.77210698235825,
-    "category": "facility"
-  },
-  {
-    "name": "Math center",
-    "type": "facility",
-    "lat": 15.660370,
-    "lng":120.771712 ,
-    "category": "department"
-  },
-  {
-    "name": "Science center",
-    "type": "facility",
-    "lat": 15.660373,
-    "lng":120.771856,
-    "category": "department"
-  },
-//   {
-//     "name": "9-BANELLY (SP-STE)",
-//     "type": "facility",
-//     "lat": 15.660373,
-//     "lng":120.771856,
-//     "category": "classroom"
-//   },
-//   {
-//     "name": "10-ARJANNE (SP-STE)",
-//     "type": "facility",
-//     "lat": 15.660373,
-//     "lng":120.771856,
-//     "category": "classroom"
-//   },
-//    {
-//     "name": "7-DADAY",
-//     "type": "facility",
-//     "lat": 15.659894,
-//     "lng":120.771731,
-//     "category": "classroom"
-//   },
-//   {
-//     "name": "7-CHIENE",
-//     "type": "facility",
-//     "lat": 15.659894,
-//     "lng":120.771793,
-//     "category": "classroom"
-//   },
-//   {
-//     "name": "7-SHIELA",
-//     "type": "facility",
-//     "lat": 15.659885,
-//     "lng":120.771854,
-//     "category": "classroom"
-//   },
-//    {
-//     "name": "8-MARINEL",
-//     "type": "facility",
-//     "lat": 15.659882,
-//     "lng":120.771922,
-//     "category": "classroom"
-//   },
-   {
-    "name": "Clinic",
-    "type": "facility",
-    "lat": 15.659921,
-    "lng":120.771974,
-    "category": "facility"
-  },
-//   {
-//     "name": "7-GRACE (SP-STE)",
-//     "type": "facility",
-//     "lat": 15.660105,
-//     "lng":  120.771959,
-//     "category": "classroom"
-//   },
-//    {
-//     "name": "7-VIOLY",
-//     "type": "facility",
-//     "lat": 15.660284, 
-//     "lng":    120.771971,
-//     "category": "classroom"
-//   },
-//   {
-//     "name": "9-ARNEL",
-//     "type": "facility",
-//     "lat": 15.66010852025782,
-//     "lng":     120.77172311795012,
-//     "category": "classroom"
-//   },
-  
-//   {
-//     "name": "9-ANNALY",
-//     "type": "facility",
-//     "lat": 15.660175669022143,
-//     "lng":     120.77171104800979,
-//     "category": "classroom"
-//   },
 
-  {
-    "name": "AP center",
-    "type": "facility",
-    "lat":15.660222337337345,
-    "lng":120.77171864071039,
-    "category": "department"
-  },
-  {
-    "name": "ESP center",
-    "type": "facility",
-    "lat":15.660564,
-    "lng":120.771923,
-    "category": "department 1st floor"
-  },
-  {
-    "name": "Filipino center",
-    "type": "facility",
-    "lat":15.660335,
-    "lng":120.772530,
-    "category": "department"
-  },
-  {
-    "name": "English center",
-    "type": "facility",
-    "lat":15.660269,
-    "lng":120.772531,
-    "category": "department"
-  },
 
-//   {
-//     "name": "9-HELEN",
-//     "type": "facility",
-//     "lat":15.660269523586946,
-//     "lng":   120.77171397606439,
-//     "category": "classroom"
-//   },
 
-//   {
-//     "name": "9-CZARINA",
-//     "type": "facility",
-//     "lat":15.660325905752389,
-//     "lng":    120.77171309449176,
-//     "category": "classroom"
-//   },
 
- 
-// {
-//     "name": "9-RICA MAE",
-//     "type": "facility",
-//     "lat":15.660420817841622,
-//     "lng":    120.77173186995468,
-//     "category": "classroom"
-//   },
 
-//   {
-//     "name": "9-AYVAN",
-//     "type": "facility",
-//     "lat":15.660431148406124,
-//     "lng":     120.7717821613729,
-//     "category": "classroom"
-//   },
 
 
-// {
-//     "name": "9-NERI",
-//     "type": "facility",
-//     "lat":15.660425983123936,
-//     "lng":    120.77184318162698,
-//     "category": "classroom"
-//   },
 
-//   {
-//     "name": "9-RHEA (PILOT)",
-//     "type": "facility",
-//     "lat":15.660420172181324,
-//     "lng":     120.77191761292593,
-//     "category": "classroom"
-//   },
 
-//   {
-//     "name": "10-MARCO ",
-//     "type": "facility",
-//     "lat":15.660489903483061,
-//     "lng":     120.7717164472532,
-//     "category": "classroom"
-//   },
 
-//    {
-//     "name": "10-EOLIA ",
-//     "type": "facility",
-//     "lat":15.66049313178344,
-//     "lng":     120.77179356076111,
-//     "category": "classroom"
-//   },
 
-//   {
-//     "name": "10-GLENDA ",
-//     "type": "facility",
-//     "lat":15.66049377744351,
-//     "lng":      120.77184586383605,
-//     "category": "classroom"
-//   },
 
-//    {
-//     "name": "10-IMEE ",
-//     "type": "facility",
-//     "lat":15.660491840463292,
-//     "lng":       120.77191157795583,
-//     "category": "classroom"
-//   },
 
-//   {
-//     "name": "10-BLESSIE ",
-//     "type": "facility",
-//     "lat":15.66049054914425,
-//     "lng":        120.7719880209212,
-//     "category": "classroom"
-//   },
 
-//   {
-//     "name": "10-CLYDE ",
-//     "type": "facility",
-//     "lat":15.660487966503915,
-//     "lng":      120.77205708779739,
-//     "category": "classroom"
-//   },
 
-//   {
-//     "name": "10-JOMAR",
-//     "type": "facility",
-//     "lat":15.660486029523646,
-//     "lng":      120.77211475528625,
-//     "category": "classroom"
-//   },
 
-//   {
-//     "name": "10-FRANCISCO",
-//     "type": "facility",
-//     "lat":15.660480864242844,
-//     "lng":      120.7721797988493,
-//     "category": "classroom"
-//   },
-
-//   {
-//     "name": "8-JENNY",
-//     "type": "facility",
-//     "lat":15.660424744283867,
-//     "lng":      120.77200335293442,
-//     "category": "classroom"
-//   },
-
-
-//   {
-//     "name": "8-JOMAR",
-//     "type": "facility",
-//     "lat":15.66042538994414,
-//     "lng":       120.77206169097548,
-//     "category": "classroom"
-//   },
-
-//   {
-//     "name": "8-JOAN",
-//     "type": "facility",
-//     "lat":15.66042538994414,
-//     "lng":      120.77211466459897,
-//     "category": "classroom"
-//   },
-
-//   {
-//     "name": "8-JOVINEL",
-//     "type": "facility",
-//     "lat":15.66042990956608,
-//     "lng":     120.77218373147518,
-//     "category": "classroom"
-//   },
-
-//   {
-//     "name": "8-JERICO",
-//     "type": "facility",
-//     "lat":15.66048764772945,
-//     "lng":   120.77228406055742,
-//     "category": "classroom"
-//   },
-
-//   {
-//     "name": "8-JERICK",
-//     "type": "facility",
-//     "lat":15.66048635640926,
-//     "lng":  120.77233971638972,
-//     "category": "classroom"
-//   },
-
-//   {
-//     "name": "8-GINA",
-//     "type": "facility",
-//     "lat":15.66048764772945,
-//     "lng":     120.77239134890881,
-//     "category": "classroom"
-//   },
-
-//     {
-//     "name": "8-ANGELICA",
-//     "type": "facility",
-//     "lat":15.66048441942898,
-//     "lng":    120.77246712130696,
-//     "category": "classroom"
-//   },
-
-//    {
-//     "name": "8-MAGDALENA",
-//     "type": "facility",
-//     "lat":15.660425018691415,
-//     "lng":     120.7722713200657,
-//     "category": "classroom"
-//   },
-
-// {
-//     "name": "8-JOCELYN",
-//     "type": "facility",
-//     "lat":15.660423081710547,
-//     "lng":      120.7723444102551,
-//     "category": "classroom"
-//   },
-
-// {
-//     "name": "8-JANINE (PILOT)",
-//     "type": "facility",
-//     "lat":15.660420499069371,
-//     "lng":      120.77240475995274,
-//     "category": "classroom"
-//   },
-
-//   {
-//     "name": "8-EMMYLYN",
-//     "type": "facility",
-//     "lat":15.660418544881246,
-//     "lng":      120.77245202339067,
-//     "category": "classroom"
-//   },
-
-{
-    "name": "Coop Canteen",
-    "type": "facility",
-    "lat": 15.659925,
-    "lng": 120.772540,
-    "category": "facility"
-  },
-
-  {
-    "name": "SPG/GUIDANCE",
-    "type": "facility",
-    "lat":15.659914938112323,
-    "lng":      120.77202986284298,
-    "category": "classroom"
-  },
-
-//   {
-//     "name": "8-MARICEL",
-//     "type": "facility",
-//     "lat":15.659917520759898,
-//     "lng":      120.77216933769976,
-//     "category": "classroom"
-//   },
-
-//   {
-//     "name": "7-KIMBERLY",
-//     "type": "facility",
-//     "lat":15.659854245885072,
-//     "lng":      120.77216732604319,
-//     "category": "classroom"
-//   },
-
-//   {
-//     "name": "7-CARMELA",
-//     "type": "facility",
-//     "lat":15.65985941118171,
-//     "lng":      120.77210161192797,
-//     "category": "classroom"
-//   },
-
-//   {
-//     "name": "7-AUDREY",
-//     "type": "facility",
-//     "lat":15.659864576478222,
-//     "lng":       120.77204327388691,
-//     "category": "classroom"
-//   },
-  
-//   {
-//     "name": "7-ARGEL",
-//     "type": "facility",
-//     "lat":15.659800010262483,
-//     "lng":       120.77202852173859,
-//     "category": "classroom"
-//   },
-
-//   {
-//     "name": "7-EDGARDO",
-//     "type": "facility",
-//     "lat":15.659800010262483,
-//     "lng":       120.77209222419721,
-//     "category": "classroom"
-//   },
-
-//   {
-//     "name": "7-ARIELITO",
-//     "type": "facility",
-//     "lat":15.659802592911497,
-//     "lng":      120.77215391499925,
-//     "category": "classroom"
-//   },
-
-//   {
-//     "name": "7-ANGELITO",
-//     "type": "facility",
-//     "lat":15.65970233926698,
-//     "lng":       120.77203916139378,
-//     "category": "classroom"
-//   },
-
-  {
-    "name": "COOKERY LAB",
-    "type": "facility",
-    "lat":15.659907875798028,
-    "lng":       120.77227203388799,
-    "category": "facility"
-  },
-
-//   {
-//     "name": "8-JAYSON",
-//     "type": "facility",
-//     "lat":15.659914018403919,
-//     "lng":       120.77234300475237,
-//     "category": "classroom"
-//   },
-
-//   {
-//     "name": "8-MARIBEL",
-//     "type": "facility",
-//     "lat":15.65991478622964,
-//     "lng":      120.77240998848958,
-//     "category": "classroom"
-//   },
-
-//  {
-//     "name": "8-EFREN",
-//     "type": "facility",
-//     "lat":15.659913250578185,
-//     "lng":       120.77246580827057,
-//     "category": "classroom"
-//   },
-
-//   {
-//     "name": "7-JHAN MARIE",
-//     "type": "facility",
-//     "lat":15.65986077712253,
-//     "lng":        120.7722877370846,
-//     "category": "classroom"
-//   },
-
-//   {
-//     "name": "7-HIDEN (PILOT)",
-//     "type": "facility",
-//     "lat":    15.659857548812166,
-//     "lng":     120.77234741623005,
-//     "category": "classroom"
-//   },
-
-//    {
-//     "name": "7-KATRINA",
-//     "type": "facility",
-//     "lat":    15.659860131460468,
-//     "lng":     120.77239502543597,
-//     "category": "classroom"
-//   },
-
-//    {
-//     "name": "7-JEREMY",
-//     "type": "facility",
-//     "lat":    15.6598594857984,
-//     "lng":      120.77244598740286,
-//     "category": "classroom"
-//   },
-
-
-//    {
-//     "name": "9-CARMELA",
-//     "type": "facility",
-//     "lat":  15.660211888828512,
-//     "lng":      120.77180244625603,
-//     "category": "classroom"
-//   },
-
-//   {
-//     "name": "9-LEONARDO",
-//     "type": "facility",
-//     "lat": 15.66028767632061,
-//     "lng":     120.77179960134401,
-//     "category": "classroom"
-//   },
-
-//    {
-//     "name": "7-JEVELYN",
-//     "type": "facility",
-//     "lat": 15.660234716389335,
-//     "lng":     120.7719010698731,
-//     "category": "classroom"
-//   },
-// {
-//     "name": "7-PINKY (SP-TVE)",
-//     "type": "facility",
-//     "lat": 15.660234716389335,
-//     "lng":     120.7719010698731,
-//     "category": "classroom"
-//   },{
-//     "name": "8-OFELIA (SP-TVE)",
-//     "type": "facility",
-//     "lat": 15.660234716389335,
-//     "lng":     120.7719010698731,
-//     "category": "classroom"
-//   },{
-//     "name": "8-MERILAN (SP-ICT)",
-//     "type": "facility",
-//     "lat": 15.660234716389335,
-//     "lng":     120.7719010698731,
-//     "category": "classroom"
-//   },{
-//     "name": "9-JOANA (SP-ICT)",
-//     "type": "facility",
-//     "lat": 15.660234716389335,
-//     "lng":     120.7719010698731,
-//     "category": "classroom"
-//   },{
-//     "name": "9-LIGAYA (SP-TVE)",
-//     "type": "facility",
-//     "lat": 15.660234716389335,
-//     "lng":     120.7719010698731,
-//     "category": "classroom"
-//   },{
-//     "name": "10-JAYSON (SP-TVE)",
-//     "type": "facility",
-//     "lat": 15.660234716389335,
-//     "lng":     120.7719010698731,
-//     "category": "classroom"
-//   },{
-//     "name": "10-MIXXY (SP-ICT)",
-//     "type": "facility",
-//     "lat": 15.660234716389335,
-//     "lng":     120.7719010698731,
-//     "category": "classroom"
-//   },
-  
-
-{
-    "name": "EGG CLASROOM",
-    "type": "facility",
-    "lat": 15.660140666821672,
-    "lng":      120.77202055618993,
-    "category": "department"
-  },
-// {
-//     "name": "9-ROCHELLE",
-//     "type": "facility",
-//     "lat": 15.660283110810225,
-//     "lng":      120.77202150449352,
-//     "category": "classroom"
-//   },
-  {
-    "name": "Bread and Pastry Product",
-    "type": "facility",
-    "lat": 15.660283110810225,
-    "lng":      120.77202150449352,
-    "category": "facility"
-  },
-   {
-    "name": "MAPEH center",
-    "type": "facility",
-    "lat": 15.660356752256677,
-    "lng":      120.77232710399102,
-    "category": "department"
-  },
-//    {
-//     "name": "7-CEE JAY",
-//     "type": "facility",
-//     "lat": 15.660356752256677,
-//     "lng":      120.77232710399102,
-//     "category": "classroom"
-//   },
-//    {
-//     "name": "9-HERWIN",
-//     "type": "facility",
-//     "lat": 15.660356752256677,
-//     "lng":      120.77232710399102,
-//     "category": "classroom"
-//   },
-//    {
-//     "name": "10-MARY GRACE (SPA)",
-//     "type": "facility",
-//     "lat": 15.660356752256677,
-//     "lng":      120.77232710399102,
-//     "category": "classroom"
-//   },
-//    {
-//     "name": "8-MICHELLE (SPA)",
-//     "type": "facility",
-//     "lat": 15.660356752256677,
-//     "lng":      120.77232710399102,
-//     "category": "classroom"
-//   },
-//  {
-//     "name": "9-ELENITA (SPA)",
-//     "type": "facility",
-//     "lat": 15.660356752256677,
-//     "lng":      120.77232710399102,
-//     "category": "classroom"
-//   },
-//  {
-//     "name": "7-KASSANDRA (SPA)",
-//     "type": "facility",
-//     "lat": 15.660356752256677,
-//     "lng":      120.77232710399102,
-//     "category": "classroom"
-//   },
-{
-    "name": "10-MARCO ",
-    "type": "facility",
-    "lat":15.660489903483061,
-    "lng":     120.7717164472532,
-    "category": "classroom"
-  },
-
-   {
-    "name": "10-EOLIA ",
-    "type": "facility",
-    "lat":15.66049313178344,
-    "lng":     120.77179356076111,
-    "category": "classroom"
-  },
-
-  {
-    "name": "10-GLENDA ",
-    "type": "facility",
-    "lat":15.66049377744351,
-    "lng":      120.77184586383605,
-    "category": "classroom"
-  },
-
-   {
-    "name": "10-IMEE ",
-    "type": "facility",
-    "lat":15.660491840463292,
-    "lng":       120.77191157795583,
-    "category": "classroom"
-  },
-
-  {
-    "name": "10-BLESSIE ",
-    "type": "facility",
-    "lat":15.66049054914425,
-    "lng":        120.7719880209212,
-    "category": "classroom"
-  },
-
-  {
-    "name": "10-CLYDE ",
-    "type": "facility",
-    "lat":15.660487966503915,
-    "lng":      120.77205708779739,
-    "category": "classroom"
-  },
-
-  {
-    "name": "10-JOMAR",
-    "type": "facility",
-    "lat":15.660486029523646,
-    "lng":      120.77211475528625,
-    "category": "classroom"
-  },
-
-  {
-    "name": "10-FRANCISCO",
-    "type": "facility",
-    "lat":15.660480864242844,
-    "lng":      120.7721797988493,
-    "category": "classroom"
-  },
-{
-    "name": "10-MIXXY (SP-ICT)",
-    "type": "facility",
-    "lat": 15.660159,
-    "lng": 120.771887,
-    "category": "classroom 2nd floor"
-  },
-
-{
-    "name": "10-JAYSON (SP-TVE)",
-    "type": "facility",
-    "lat": 15.660275,
-    "lng": 120.771883,
-    "category": "classroom 3rd floor"
-  },
-{
-        "name": "10-MARY GRACE G. (SPA)",
-        "type": "facility",
-        "lat": 15.660362,
-        "lng":120.772336,
-        "category": "clasroom 2nd floor"
-  },
-{
-        "name": "10-CHRISTINA",
-        "type": "facility",
-        "lat": 15.660563,
-        "lng":120.771961,
-        "category": "clasroom 2nd floor"
-  },
-  {
-        "name": "10-MARY GRACE M.",
-        "type": "facility",
-        "lat": 15.660563,
-        "lng":120.771961,
-        "category": "clasroom 1st floor"
-  },
-  {
-        "name": "10-JENNY ROSE",
-        "type": "facility",
-        "lat": 15.660565,
-        "lng":120.772051,
-        "category": "clasroom 2nd floor"
-  },
-  {
-        "name": "10-ALJON (PILOT)",
-        "type": "facility",
-        "lat": 15.660565,
-        "lng":120.772051,
-        "category": "clasroom 1st floor"
-  },
-  {
-        "name": "10-THELMA",
-        "type": "facility",
-        "lat": 15.660562,
-        "lng":120.772148,
-        "category": "clasroom 2nd floor"
-  },
-  {
-        "name": "10-LOVELYN",
-        "type": "facility",
-        "lat": 15.660562,
-        "lng":120.772148,
-        "category": "clasroom 1st floor"
-  },
-  {
-        "name": "10-NESTOR",
-        "type": "facility",
-        "lat": 15.660562,
-        "lng":120.772236,
-        "category": "clasroom 2nd floor"
-  },
-  {
-        "name": "10-FLOREY MAE",
-        "type": "facility",
-        "lat": 15.660562,
-        "lng":120.772236,
-        "category": "clasroom 1st floor"
-      },
-  {
-        "name": "10-ARJANE (SP-STE)",
-        "type": "facility",
-        "lat": 15.660375,
-        "lng":120.771802,
-        "category": "classroom 1st floor"
-    },
-  
-
-
-
-
-
-
-
-
-    {
-    "name": "9-CARMELIA",
-    "type": "facility",
-    "lat":  15.660211888828512,
-    "lng":      120.77180244625603,
-    "category": "classroom"
-  },
-
-  {
-    "name": "9-LEONARDO",
-    "type": "facility",
-    "lat": 15.66028767632061,
-    "lng":     120.77179960134401,
-    "category": "classroom"
-  },
-
-  {
-    "name": "9-ARNEL",
-    "type": "facility",
-    "lat": 15.66010852025782,
-    "lng":     120.77172311795012,
-    "category": "classroom"
-  },
   
   {
-    "name": "9-ANNALY",
-    "type": "facility",
-    "lat": 15.660175669022143,
-    "lng":     120.77171104800979,
-    "category": "classroom"
-  },
-
-  {
-    "name": "9-HELEN",
-    "type": "facility",
-    "lat":15.660269523586946,
-    "lng":   120.77171397606439,
-    "category": "classroom"
-  },
-
-  {
-    "name": "9-CZARINA",
-    "type": "facility",
-    "lat":15.660325905752389,
-    "lng":    120.77171309449176,
-    "category": "classroom"
-  },
-
- 
-{
-    "name": "9-RICA MAE",
-    "type": "facility",
-    "lat":15.660420817841622,
-    "lng":    120.77173186995468,
-    "category": "classroom"
-  },
-
-  {
-    "name": "9-AYVAN",
-    "type": "facility",
-    "lat":15.660431148406124,
-    "lng":     120.7717821613729,
-    "category": "classroom"
-  },
-
-
-{
-    "name": "9-NERI",
-    "type": "facility",
-    "lat":15.660425983123936,
-    "lng":    120.77184318162698,
-    "category": "classroom"
-  },
-
-  {
-    "name": "9-RHEA (PILOT)",
-    "type": "facility",
-    "lat":15.660420172181324,
-    "lng":     120.77191761292593,
-    "category": "classroom"
-  },
-{
-    "name": "9-LIGAYA (SP-TVE)",
-    "type": "facility",
-    "lat": 15.660159,
-    "lng": 120.771887,
-    "category": "classroom 4th floor"
-  },
-{
-    "name": "9-JOANA (SP-ICT)",
-    "type": "facility",
-    "lat": 15.660275,
-    "lng": 120.771883,
-    "category": "classroom 4th floor"
-  },
-{
-    "name": "9-ROCHELLE",
-    "type": "facility",
-    "lat": 15.660283110810225,
-    "lng":      120.77202150449352,
-    "category": "classroom 2nd floor"
-  },
-{
-        "name": "9-BANELLY (SP-STE)",
-        "type": "facility",
-        "lat": 15.660375,
-        "lng":120.771802,
-        "category": "classroom 2nd floor"
-    },
-{
-        "name": "9-HERWIN",
-        "type": "facility",
-        "lat": 15.660365,
-        "lng": 120.772215,
-        "category": "classroom 2nd floor"
-    },
-{
-        "name": "9-ELENITA (SPA)",
-        "type": "facility",
-        "lat": 15.660368,
-        "lng": 120.772419,
-        "category": "classroom 1st floor"
-    },
-
-
-
-
-
-
-
-
-
-
-
-    {
-    "name": "8-MARINEL",
-    "type": "facility",
-    "lat": 15.659882,
-    "lng":120.771922,
-    "category": "classroom"
+    "name": "7-DADAY (2)",
+    "type": "",
+    "lat": 15.659893,
+    "lng": 120.771739,
+    "category": "Classroom"
   },
   {
-    "name": "8-JENNY",
-    "type": "facility",
-    "lat":15.660424744283867,
-    "lng":      120.77200335293442,
-    "category": "classroom"
-  },
-
-
-  {
-    "name": "8-JOMAR",
-    "type": "facility",
-    "lat":15.66042538994414,
-    "lng":       120.77206169097548,
-    "category": "classroom"
-  },
-
-  {
-    "name": "8-JOAN",
-    "type": "facility",
-    "lat":15.66042538994414,
-    "lng":      120.77211466459897,
-    "category": "classroom"
+    "name": "7-CHIENE (3)",
+    "type": "",
+    "lat": 15.659893,
+    "lng": 120.771795,
+    "category": "Classroom"
   },
   {
-    "name": "8-JOVINEL",
-    "type": "facility",
-    "lat":15.66042990956608,
-    "lng":     120.77218373147518,
-    "category": "classroom"
-  },
-
-  {
-    "name": "8-JERICO",
-    "type": "facility",
-    "lat":15.66048764772945,
-    "lng":   120.77228406055742,
-    "category": "classroom"
-  },
-
-  {
-    "name": "8-JERICK",
-    "type": "facility",
-    "lat":15.66048635640926,
-    "lng":  120.77233971638972,
-    "category": "classroom"
-  },
-
-  {
-    "name": "8-GINA",
-    "type": "facility",
-    "lat":15.66048764772945,
-    "lng":     120.77239134890881,
-    "category": "classroom"
-  },
-
-    {
-    "name": "8-ANGELICA",
-    "type": "facility",
-    "lat":15.66048441942898,
-    "lng":    120.77246712130696,
-    "category": "classroom"
-  },
-
-   {
-    "name": "8-MAGDALENA",
-    "type": "facility",
-    "lat":15.660425018691415,
-    "lng":     120.7722713200657,
-    "category": "classroom"
-  },
-
-{
-    "name": "8-JOCELYN",
-    "type": "facility",
-    "lat":15.660423081710547,
-    "lng":      120.7723444102551,
-    "category": "classroom"
-  },
-
-{
-    "name": "8-JANINE (PILOT)",
-    "type": "facility",
-    "lat":15.660420499069371,
-    "lng":      120.77240475995274,
-    "category": "classroom"
-  },
-
-  {
-    "name": "8-EMMYLYN",
-    "type": "facility",
-    "lat":15.660418544881246,
-    "lng":      120.77245202339067,
-    "category": "classroom"
-  },
-
-  {
-    "name": "8-MARICEL",
-    "type": "facility",
-    "lat":15.659917520759898,
-    "lng":      120.77216933769976,
-    "category": "classroom"
-  },
-   {
-    "name": "8-JAYSON",
-    "type": "facility",
-    "lat":15.659914018403919,
-    "lng":       120.77234300475237,
-    "category": "classroom"
-  },
-
-  {
-    "name": "8-MARIBEL",
-    "type": "facility",
-    "lat":15.65991478622964,
-    "lng":      120.77240998848958,
-    "category": "classroom"
-  },
-
- {
-    "name": "8-EFREN",
-    "type": "facility",
-    "lat":15.659913250578185,
-    "lng":       120.77246580827057,
-    "category": "classroom"
-  },
-{
-    "name": "8-OFELIA (SP-TVE)",
-    "type": "facility",
-    "lat": 15.660275,
-    "lng": 120.771883,
-    "category": "classroom 2nd floor"
-  },
-{
-    "name": "8-MERILAN (SP-ICT)",
-    "type": "facility",
-    "lat": 15.660159,
-    "lng": 120.771887,
-    "category": "classroom 3rd floor"
-  },
-{
-    "name": "8-MICHELLE (SPA)",
-    "type": "facility",
-    "lat": 15.660368,
-    "lng": 120.772419,
-    "category": "classroom 2nd floor"
+    "name": "7-SHEILA (4)",
+    "type": "",
+    "lat": 15.659893,
+    "lng": 120.771856,
+    "category": "Classroom"
   },
   {
-    "name": "8-GERVY (SP-STE)",
-    "type": "facility",
-    "lat": 15.660177,
+    "name": "7-LEILANI (30)",
+    "type": "",
+    "lat": 15.659919,
+    "lng": 120.772100,
+    "category": "Classroom"
+  },
+  {
+    "name": "7-AUDREY (21)",
+    "type": "",
+    "lat": 15.659860,
+    "lng": 120.772024,
+    "category": "Classroom"
+  },
+  {
+    "name": "7-CARMELA (22)",
+    "type": "",
+    "lat": 15.659860,
+    "lng": 120.772101,
+    "category": "Classroom"
+  },
+  {
+    "name": "7-KIMBERLY (23)",
+    "type": "",
+    "lat": 15.659860,
+    "lng": 120.772175,
+    "category": "Classroom"
+  },
+  {
+    "name": "7-JAHN MARIE (24)",
+    "type": "",
+    "lat": 15.659860,
+    "lng": 120.772278,
+    "category": "Classroom"
+  },
+  {
+    "name": "7-HIDEN (PILOT) (25)",
+    "type": "",
+    "lat": 15.659860,
+    "lng": 120.772338,
+    "category": "Classroom"
+  },
+  {
+    "name": "7-KATRINA (26)",
+    "type": "",
+    "lat": 15.659860,
+    "lng": 120.772398,
+    "category": "Classroom"
+  },
+  {
+    "name": "7-JEREMY (27)",
+    "type": "",
+    "lat": 15.659860,
+    "lng": 120.772455,
+    "category": "Classroom"
+  },
+  {
+    "name": "7-ARGEL (?)",
+    "type": "",
+    "lat": 15.659802,
+    "lng": 120.772026,
+    "category": "Classroom"
+  },
+  {
+    "name": "7-EDGARDO (?)",
+    "type": "",
+    "lat": 15.659802,
+    "lng": 120.772101,
+    "category": "Classroom"
+  },
+  {
+    "name": "7-ARIELITO (?)",
+    "type": "",
+    "lat": 15.659802,
+    "lng": 120.772174,
+    "category": "Classroom"
+  },
+  {
+    "name": "7-ANGELITO (6)",
+    "type": "",
+    "lat": 15.659728,
+    "lng": 120.772026,
+    "category": "Classroom"
+  },
+  {
+    "name": "7-JIMUEL (ICT) (41)",
+    "type": "2nd Floor",
+    "lat": 15.659978,
+    "lng": 120.772115,
+    "category": "Classroom"
+  },
+  {
+    "name": "7-GRACE (STE) (61)",
+    "type": "",
+    "lat": 15.660116,
     "lng": 120.771968,
-    "category": "classroom"
+    "category": "Classroom"
+  },
+  {
+    "name": "7-VIOLY (58)",
+    "type": "",
+    "lat": 15.660259,
+    "lng": 120.771968,
+    "category": "Classroom"
+  },
+  {
+    "name": "7-CEE JAY (66)",
+    "type": "1st Floor",
+    "lat": 15.660340,
+    "lng": 120.772217,
+    "category": "Classroom"
+  },
+  {
+    "name": "7-KASSANDRA (SPA) (67)",
+    "type": "1st Floor",
+    "lat": 15.660340,
+    "lng": 120.772293,
+    "category": "Classroom"
+  },
+  {
+    "name": "7-PINKY (TVE) (108)",
+    "type": "1st Floor",
+    "lat": 15.660265,
+    "lng": 120.771856,
+    "category": "Classroom"
+  },
+  {
+    "name": "7-JELYN (109)",
+    "type": "1st Floor",
+    "lat": 15.660132,
+    "lng": 120.771856,
+    "category": "Classroom"
   },
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   {
-    "name": "7-DADAY",
-    "type": "facility",
-    "lat": 15.659894,
-    "lng":120.771731,
-    "category": "classroom"
+    "name": "8-MARINEL (5)",
+    "type": "",
+    "lat": 15.659892,
+    "lng": 120.771912,
+    "category": "Classroom"
   },
   {
-    "name": "7-CEE JAY",
-    "type": "facility",
-    "lat": 15.660365,
-    "lng": 120.772215,
-    "category": "classroom 1st floor"
+    "name": "8-MARICEL (31)",
+    "type": "",
+    "lat": 15.659919,
+    "lng": 120.772176,
+    "category": "Classroom"
   },
   {
-    "name": "7-KASSANDRA (SPA)",
-    "type": "facility",
-    "lat": 15.660362,
-    "lng":120.772336,
-    "category": "classroom 1st floor"
+    "name": "8-JAYSON (33)",
+    "type": "",
+    "lat": 15.659919,
+    "lng": 120.772338,
+    "category": "Classroom"
   },
   {
-    "name": "7-JIMUEL (SP-ICT)",
-    "type": "facility",
-    "lat": 15.659998,
-    "lng":120.772112,
-    "category": "classroom 2nd floor"
+    "name": "8-MARIBEL (34)",
+    "type": "",
+    "lat": 15.659919,
+    "lng": 120.772395,
+    "category": "Classroom"
   },
   {
-    "name": "7-LEILANI",
-    "type": "facility",
+    "name": "8-EFREN (35)",
+    "type": "",
+    "lat": 15.659919,
+    "lng": 120.772456,
+    "category": "Classroom"
+  },
+  {
+    "name": "8-MERILAN (ICT) (113)",
+    "type": "3rd Floor",
+    "lat": 15.660136,
+    "lng": 120.771898,
+    "category": "Classroom"
+  },
+  {
+    "name": "8-OFELIA (TVE) (110)",
+    "type": "2nd Floor",
+    "lat": 15.660263,
+    "lng": 120.771876,
+    "category": "Classroom"
+  },
+  {
+    "name": "8-GERVY (STE) (60)",
+    "type": "",
+    "lat": 15.660176,
+    "lng": 120.771969,
+    "category": "Classroom"
+  },
+  {
+    "name": "8-MICHELLE (SPA) (72)",
+    "type": "2nd Floor",
+    "lat": 15.660377,
+    "lng": 120.772371,
+    "category": "Classroom"
+  },
+  {
+    "name": "8-JENNY (78)",
+    "type": "",
+    "lat": 15.660431,
+    "lng": 120.772000,
+    "category": "Classroom"
+  },
+  {
+    "name": "8-JOMAR (79)",
+    "type": "",
+    "lat": 15.660431,
+    "lng": 120.772063,
+    "category": "Classroom"
+  },
+  {
+    "name": "8-JOAN (80)",
+    "type": "",
+    "lat": 15.660431,
+    "lng": 120.772123,
+    "category": "Classroom"
+  },
+  {
+    "name": "8-JOVINEL (81)",
+    "type": "",
+    "lat": 15.660431,
+    "lng": 120.772183,
+    "category": "Classroom"
+  },
+  {
+    "name": "8-MAGDALENA (82)",
+    "type": "",
+    "lat": 15.660431,
+    "lng": 120.772280,
+    "category": "Classroom"
+  },
+  {
+    "name": "8-JOCELYN (83)",
+    "type": "",
+    "lat": 15.660431,
+    "lng": 120.772280,
+    "category": "Classroom"
+  },
+  {
+    "name": "8-JANINE (PILOT) (84)",
+    "type": "",
+    "lat": 15.660431,
+    "lng": 120.772280,
+    "category": "Classroom"
+  },
+  {
+    "name": "8-EMMYLYN (85)",
+    "type": "",
+    "lat": 15.660431,
+    "lng": 120.772280,
+    "category": "Classroom"
+  },
+  {
+    "name": "8-ANGELICA (?)",
+    "type": "",
+    "lat": 15.660485,
+    "lng": 120.772469,
+    "category": "Classroom"
+  },
+  {
+    "name": "8-GINA (96)",
+    "type": "",
+    "lat": 15.660485,
+    "lng": 120.772396,
+    "category": "Classroom"
+  },
+  {
+    "name": "8-JERICK (95)",
+    "type": "",
+    "lat": 15.660485,
+    "lng": 120.772339,
+    "category": "Classroom"
+  },
+  {
+    "name": "8-JERICO (94)",
+    "type": "",
+    "lat": 15.660485,
+    "lng": 120.772279,
+    "category": "Classroom"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    "name": "9-ARNEL (45)",
+    "type": "",
+    "lat": 15.660119,
+    "lng": 120.771719,
+    "category": "Classroom"
+  },
+  {
+    "name": "9-ANNALY (46)",
+    "type": "",
+    "lat": 15.660179,
+    "lng": 120.771719,
+    "category": "Classroom"
+  },
+  {
+    "name": "9-HELEN (48)",
+    "type": "",
+    "lat": 15.660270,
+    "lng": 120.771719,
+    "category": "Classroom"
+  },
+  {
+    "name": "9-CZARINA (49)",
+    "type": "",
+    "lat": 15.660325,
+    "lng": 120.771719,
+    "category": "Classroom"
+  },
+  {
+    "name": "9-RICA MAE (74)",
+    "type": "",
+    "lat": 15.660431,
+    "lng": 120.771729,
+    "category": "Classroom"
+  },
+  {
+    "name": "9-AYVAN (75)",
+    "type": "",
+    "lat": 15.660431,
+    "lng": 120.771786,
+    "category": "Classroom"
+  },
+  {
+    "name": "9-NERI (76)",
+    "type": "",
+    "lat": 15.660431,
+    "lng": 120.771786,
+    "category": "Classroom"
+  },
+  {
+    "name": "9-RHEA (PILOT) (77)",
+    "type": "",
+    "lat": 15.660431,
+    "lng": 120.771786,
+    "category": "Classroom"
+  },
+  {
+    "name": "9-LEONARDO (52)",
+    "type": "",
+    "lat": 15.660300,
+    "lng": 120.771796,
+    "category": "Classroom"
+  },
+  {
+    "name": "9-CARMELIA (51)",
+    "type": "",
+    "lat": 15.660230,
+    "lng": 120.771796,
+    "category": "Classroom"
+  },
+  {
+    "name": "9-JOANA (ICT) (114)",
+    "type": "4th Floor",
+    "lat": 15.660267,
+    "lng": 120.771918,
+    "category": "Classroom"
+  },
+  {
+    "name": "9-LIGAYA (TVE) (115)",
+    "type": "4th Floor",
+    "lat": 15.660132,
+    "lng": 120.771918,
+    "category": "Classroom"
+  },
+  {
+    "name": "9-BANNELY (STE) (56)",
+    "type": "2nd Floor",
+    "lat": 15.660381,
+    "lng": 120.771823,
+    "category": "Classroom"
+  },
+  {
+    "name": "9-ROCHELLE (65)",
+    "type": "2nd Floor",
+    "lat": 15.660311, 
+    "lng": 120.772028,
+    "category": "Classroom"
+  },
+  {
+    "name": "9-HERWIN (45)",
+    "type": "2nd Floor",
+    "lat": 15.660378,
+    "lng": 120.772220,
+    "category": "Classroom"
+  },
+  {
+    "name": "9-ELENITA (SPA) (45)",
+    "type": "1st Floor",
+    "lat": 15.660340,
+    "lng": 120.772367,
+    "category": "Classroom"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    "name": "10-MARCO (86)",
+    "type": "",
+    "lat": 15.660484,
+    "lng": 120.771727,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-EOLIA (87)",
+    "type": "",
+    "lat": 15.660484,
+    "lng": 120.771788,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-GLENDA (88)",
+    "type": "",
+    "lat": 15.660484,
+    "lng": 120.771846,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-IMEE (89)",
+    "type": "",
+    "lat": 15.660484,
+    "lng": 120.771906,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-BLESSIE (90)",
+    "type": "",
+    "lat": 15.660484,
+    "lng": 120.771906,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-CLYDE (91)",
+    "type": "",
+    "lat": 15.660484,
+    "lng": 120.772061,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-JOMAR (92)",
+    "type": "",
+    "lat": 15.660484,
+    "lng": 120.772122,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-FRANCISCO (93)",
+    "type": "",
+    "lat": 15.660484,
+    "lng": 120.772185,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-ARJANE (STE) (53)",
+    "type": "1st Floor",
+    "lat": 15.660360,
+    "lng": 120.771827,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-MARY GRACE (SPA) (71)",
+    "type": "2nd Floor",
+    "lat": 15.660378,
+    "lng": 120.772295,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-JAYSON (TVE) (112)",
+    "type": "3rd Floor",
+    "lat":  15.660270,
+    "lng":  120.771898,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-MIXXY (ICT) (111)",
+    "type": "2nd Floor",
+    "lat": 15.660130,
+    "lng": 120.771875,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-MARY GRACE (98)",
+    "type": "1st Floor",
+    "lat": 15.660550,
+    "lng": 120.771975,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-ALJON (PILOT) (99)",
+    "type": "1st Floor",
+    "lat": 15.660550,
+    "lng": 120.772054,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-LOVELYN (100)",
+    "type": "1st Floor",
+    "lat": 15.660550,
+    "lng": 120.772133,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-FLOREY MAY (101)",
+    "type": "1st Floor",
+    "lat": 15.660550,
+    "lng": 120.772213,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-CHRISTINA (103)",
+    "type": "2nd Floor",
+    "lat": 15.660587,
+    "lng": 120.771975,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-JENNY ROSE (104)",
+    "type": "2nd Floor",
+    "lat": 15.660587,
+    "lng": 120.772055,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-THELMA (105)",
+    "type": "2nd Floor",
+    "lat": 15.660587,
+    "lng": 120.772131,
+    "category": "Classroom"
+  },
+  {
+    "name": "10-NESTOR (106)",
+    "type": "2nd Floor",
+    "lat": 15.660587,
+    "lng": 120.772211,
+    "category": "Classroom"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    "name": "AP CENTER (47)",
+    "type": "",
+    "lat": 15.660228,
+    "lng": 120.771719,
+    "category": "Department"
+  },
+  {
+    "name": "MATH CENTER (50)",
+    "type": "",
+    "lat": 15.660374,
+    "lng": 120.771719,
+    "category": "Department"
+  },
+  {
+    "name": "SCIENCE CENTER (54)",
+    "type": "1st Floor",
+    "lat": 15.660368,
+    "lng": 120.771916,
+    "category": "Department"
+  },
+  {
+    "name": "SCIENCE CENTER (57)",
+    "type": "",
+    "lat": 15.660309,
+    "lng": 120.771971,
+    "category": "Department"
+  },
+  {
+    "name": "ESP CENTER (97)",
+    "type": "1st Floor",
+    "lat": 15.660548,
+    "lng": 120.771914,
+    "category": "Department"
+  },
+  {
+    "name": "FILIPINO CENTER (?)",
+    "type": "2nd Floor",
+    "lat": 15.660587,
+    "lng": 120.771914,
+    "category": "Department"
+  },
+  {
+    "name": "TLE CENTER (102)",
+    "type": "1st Floor",
+    "lat": 15.660549,
+    "lng": 120.772269,
+    "category": "Department"
+  },
+  {
+    "name": "SSLG (107)",
+    "type": "2nd Floor",
+    "lat": 15.660583,
+    "lng": 120.772269,
+    "category": "Facility"
+  },
+  {
+    "name": "WAITING AREA (?)",
+    "type": "",
+    "lat": 15.660485,
+    "lng": 120.772591,
+    "category": "Facility"
+  },
+  {
+    "name": "COMFORT ROOM (?)",
+    "type": "",
+    "lat": 15.660456,
+    "lng": 120.772638,
+    "category": "Facility"
+  },
+  {
+    "name": "MAPEH CENTER (?)",
+    "type": "2nd Floor",
+    "lat": 15.660377,
+    "lng": 120.772447,
+    "category": "Department"
+  },
+  {
+    "name": "MAPEH CENTER (69)",
+    "type": "1st Floor",
+    "lat": 15.660340,
+    "lng": 120.772445,
+    "category": "Department"
+  },
+  {
+    "name": "SCHOOL MANAGED CANTEEN (?)",
+    "type": "",
+    "lat": 15.660374,
+    "lng": 120.772065,
+    "category": "Facility"
+  },
+  {
+    "name": "KUBO (?)",
+    "type": "",
+    "lat": 15.660372,
+    "lng": 120.771977,
+    "category": ""
+  },
+  {
+    "name": "ECHO (59)",
+    "type": "",
+    "lat": 15.660222,
+    "lng": 120.771972,
+    "category": "Facility"
+  },
+  {
+    "name": "BREAD AND PASTRY PRODUCT BPP (64)",
+    "type": "1st Floor",
+    "lat": 15.660262,
+    "lng": 120.772027,
+    "category": "Department"
+  },
+  {
+    "name": "FLAG POLE (?)",
+    "type": "",
+    "lat": 15.660199,
+    "lng": 120.772026,
+    "category": ""
+  },
+
+  {
+    "name": "EGG CLASSROOM (62)",
+    "type": "",
+    "lat": 15.660139,
+    "lng": 120.772019,
+    "category": "Department"
+  },
+  {
+    "name": "I LOVE BSNHS (?)",
+    "type": "",
+    "lat": 15.660114,
+    "lng": 120.771793,
+    "category": ""
+  },
+  {
+    "name": "GUARD HOUSE (1)",
+    "type": "",
+    "lat": 15.659933,
+    "lng": 120.771686,
+    "category": "Facility"
+  },
+  {
+    "name": "CLINIC (28)",
+    "type": "",
+    "lat": 15.659919,
+    "lng": 120.771971,
+    "category": "Facility"
+  },
+  {
+    "name": "SPED/GUIDANCE (29)",
+    "type": "",
+    "lat": 15.659919,
+    "lng": 120.772024,
+    "category": "Facility"
+  },
+  {
+    "name": "COOKERY LAB HE (32)",
+    "type": "",
+    "lat": 15.659919,
+    "lng": 120.772280,
+    "category": "Department"
+  },
+  {
+    "name": "COOP CANTEEN (?)",
+    "type": "",
     "lat": 15.659920,
-    "lng":120.772101,
-    "category": "classroom"
+    "lng": 120.772544,
+    "category": "Facility"
   },
   {
-    "name": "7-CHIENE",
-    "type": "facility",
-    "lat": 15.659894,
-    "lng":120.771793,
-    "category": "classroom"
+    "name": "SHS COM LAB (44)",
+    "type": "2nd Floor",
+    "lat": 15.659977,
+    "lng": 120.772437,
+    "category": "Facility"
   },
   {
-    "name": "7-SHIELA",
-    "type": "facility",
-    "lat": 15.659885,
-    "lng":120.771854,
-    "category": "classroom"
-  },
-   
-  {
-    "name": "7-GRACE (SP-STE)",
-    "type": "facility",
-    "lat": 15.660105,
-    "lng":  120.771959,
-    "category": "office"
-  },
-   {
-    "name": "7-VIOLY",
-    "type": "facility",
-    "lat": 15.660259, 
-    "lng": 120.771967,
-    "category": "classroom"
+    "name": "JHS COM LAB (43)",
+    "type": "2nd Floor",
+    "lat": 15.659977,
+    "lng": 120.772326,
+    "category": "Facility"
   },
   {
-    "name": "7-KIMBERLY",
-    "type": "facility",
-    "lat":15.659854245885072,
-    "lng":      120.77216732604319,
-    "category": "classroom"
+    "name": "JHS COM LAB (42)",
+    "type": "2nd Floor",
+    "lat": 15.659977,
+    "lng": 120.772221,
+    "category": "Facility"
+  },
+  {
+    "name": "BSNHS GYMNASIUM (?)",
+    "type": "",
+    "lat": 15.660180,
+    "lng": 120.772273,
+    "category": "Facility"
+  },
+  {
+    "name": "SCHOOL STAGE (?)",
+    "type": "",
+    "lat": 15.660176,
+    "lng": 120.772488,
+    "category": "Facility"
+  },
+  {
+    "name": "FILIPINO CENTER (117)",
+    "type": "",
+    "lat": 15.660334,
+    "lng": 120.772531,
+    "category": "Department"
+  },
+  {
+    "name": "ENGLISH CENTER (118)",
+    "type": "",
+    "lat": 15.660272,
+    "lng": 120.772531,
+    "category": "Department"
+  },
+  {
+    "name": "MAPEH BODEGA (121)",
+    "type": "",
+    "lat": 15.660224,
+    "lng": 120.772531,
+    "category": "Facility"
+  },
+  {
+    "name": "JHS BODEGA (122)",
+    "type": "",
+    "lat": 15.660137,
+    "lng": 120.772531,
+    "category": "Facility"
+  },
+  {
+    "name": "BEAUTY CARE LAB (123)",
+    "type": "",
+    "lat": 15.660085,
+    "lng": 120.772531,
+    "category": "Department"
+  },
+  {
+    "name": "DRRM (124)",
+    "type": "",
+    "lat": 15.660035,
+    "lng": 120.772531,
+    "category": "Facility"
+  },
+  {
+    "name": "CHAIRS BODEGA (124)",
+    "type": "",
+    "lat": 15.659983,
+    "lng": 120.772531,
+    "category": "Facility"
   },
 
-  {
-    "name": "7-CARMELA",
-    "type": "facility",
-    "lat":15.65985941118171,
-    "lng":      120.77210161192797,
-    "category": "classroom"
-  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   {
-    "name": "7-AUDREY",
-    "type": "facility",
-    "lat":15.659864576478222,
-    "lng":       120.77204327388691,
-    "category": "classroom"
+    "name": "ASP II (40)",
+    "type": "1st Floor",
+    "lat": 15.660013,
+    "lng": 120.772462,
+    "category": "Office"
+  },
+  {
+    "name": "SBM (39)",
+    "type": "1st Floor",
+    "lat": 15.660013,
+    "lng": 120.772409,
+    "category": "Office"
+  },
+  {
+    "name": "HEAD TEACHERS OFFICE (37)",
+    "type": "1st Floor",
+    "lat": 15.660013,
+    "lng": 120.772221,
+    "category": "Office"
+  },
+  {
+    "name": "PRINCIPALS OFFICE (38)",
+    "type": "1st Floor",
+    "lat": 15.660013,
+    "lng": 120.772328,
+    "category": "Office"
+  },
+  {
+    "name": "REGISTRAR (36)",
+    "type": "1st Floor",
+    "lat": 15.660013,
+    "lng": 120.772141,
+    "category": "Office"
+  },
+  {
+    "name": "BOOKKEEPER (36)",
+    "type": "1st Floor",
+    "lat": 15.660013,
+    "lng": 120.772141,
+    "category": "Office"
+  },
+  {
+    "name": "CASHIER (36)",
+    "type": "1st Floor",
+    "lat": 15.660013,
+    "lng": 120.772088,
+    "category": "Office"
+  },
+  {
+    "name": "HR (36)",
+    "type": "1st Floor",
+    "lat": 15.660013,
+    "lng": 120.772088,
+    "category": "Office"
   },
   
-  {
-    "name": "7-ARGEL",
-    "type": "facility",
-    "lat":15.659800010262483,
-    "lng":       120.77202852173859,
-    "category": "classroom"
-  },
-
-  {
-    "name": "7-EDGARDO",
-    "type": "facility",
-    "lat":15.659800010262483,
-    "lng":       120.77209222419721,
-    "category": "classroom"
-  },
-
-  {
-    "name": "7-ARIELITO",
-    "type": "facility",
-    "lat":15.659802592911497,
-    "lng":      120.77215391499925,
-    "category": "classroom"
-  },
-
-  {
-    "name": "7-ANGELITO",
-    "type": "facility",
-    "lat":15.659728,
-    "lng":120.772027,
-    "category": "classroom"
-  },
-{
-    "name": "7-JHAN MARIE",
-    "type": "facility",
-    "lat":15.65986077712253,
-    "lng":        120.7722877370846,
-    "category": "classroom"
-  },
-
-  {
-    "name": "7-HIDEN (PILOT)",
-    "type": "facility",
-    "lat":    15.659857548812166,
-    "lng":     120.77234741623005,
-    "category": "classroom"
-  },
-
-   {
-    "name": "7-KATRINA",
-    "type": "facility",
-    "lat":    15.659860131460468,
-    "lng":     120.77239502543597,
-    "category": "classroom"
-  },
-
-   {
-    "name": "7-JEREMY",
-    "type": "facility",
-    "lat":    15.6598594857984,
-    "lng":      120.77244598740286,
-    "category": "classroom"
-  },
-
- {
-    "name": "7-JELYN",
-    "type": "facility",
-    "lat": 15.660159,
-    "lng": 120.771887,
-    "category": "classroom 1st floor"
-  },
-
- {
-    "name": "7-PINKY (SP-TVE)",
-    "type": "facility",
-    "lat": 15.660275,
-    "lng": 120.771883,
-    "category": "classroom 1st floor"
-  },
-
-  {
-
-"name": "Principals office",
-
-"type": "facility",
-
-"lat": 15.660018,
-
-"lng":120.772222,
-
-"category": "office 1st floor"
-
-},
-
-{
-
-"name": "Head teachers office",
-
-"type": "facility",
-
-"lat": 15.659992,
-
-"lng":120.772220,
-
-"category": "office 1st floor"
-},
-{
-
-"name": "SBM office",
-
-"type": "facility",
-
-"lat": 15.659996,
-
-"lng":120.772464,
-
-"category": "office 1st floor"
-
-},
-{
-
-"name": "ASP II office",
-
-"type": "facility",
-
-"lat": 15.660375,
-
-"lng":120.771802,
-
-"category": "office 1st floon"
-
-},
-
-{
-
-"name": "JHS com lab",
-
-"type": "facility",
-
-"lat": 15.659994,
-
-"lng": 128.772344,
-
-"category": "facility 2nd floor"
-},
-
-
-{
-"name": "Registrar/Cashier",
-
-"type": "facility",
-
-"lat": 15.659998,
-
-"lng":120.772112,
-
-"category": "facility 1st floor"
-
-}, 
-
-{
-
-"name": "JHS bodega",
-
-"type": "facility",
-
-"lat": 15.660133,
-
-"lng":120.772529,
-
-"category": "facility"
-
-},
-{
-
-"name": "Beauty care lab",
-
-"type": "facility",
-
-"lat": 15.660085,
-
-"lng":120.772533,
-
-"category": "facility"
-},
-{
-
-"name": "Guard house",
-
-"type": "facility",
-
-"lat":
-
-15.659932,
-
-"lng":120.771690,
-
-"category": "facility"
-},
-{
-
-"name": "DRRM",
-
-"type":
-
-"facility",
-
-"lat": 15.660030,
-
-"lng":120.772531,
-
-"category": "facility"
-},
 
 ];
 
@@ -13975,7 +13556,7 @@ const BOUNDS = {
 // Map state
 let userLat = null;
 let userLng = null;
-let userAccuracy = null;
+let userAccuracy = null;2
 let watchId = null;
 let mapImage = null;
 let mapContainer = null;
@@ -14497,12 +14078,12 @@ function clearMarkers() {
 
 // Toggle between blueprint and satellite view (if implemented)
 function toggleMapView() {
-  // This can be extended to switch between final.png and safe.jpg
-  if (map && map.src.includes('final.png')) {
+  // This can be extended to switch between totoongmap.png and safe.jpg
+  if (map && map.src.includes('totoongmap.png')) {
     map.src = 'images/meps.jpg';
     if (toggleBtn) toggleBtn.innerHTML = '<i class="fas fa-map"></i> Blueprint View';
   } else {
-    map.src = 'images/final.png';
+    map.src = 'images/totoongmap.png';
     if (toggleBtn) toggleBtn.innerHTML = '<i class="fas fa-satellite"></i> Satellite View';
   }
 }
